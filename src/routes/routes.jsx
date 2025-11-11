@@ -7,6 +7,7 @@ import Error404 from "../components/error404";
 import AddCar from "../pages/AddCar/AddCar";
 import PrivateRoute from "./PrivateRoutes";
 import MyListings from "../pages/MyListings/MyListings";
+import BrowseCars from "../pages/BrowseCars/BrowseCars";
 
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         path: "/my-listings",
         element: <PrivateRoute><MyListings /></PrivateRoute>
       },
+      {
+        path: "/browse",
+        Component: BrowseCars
+      }
     ],
   },
   {
