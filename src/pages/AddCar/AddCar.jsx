@@ -27,6 +27,7 @@ const AddCar = () => {
       rentPrice: e.target.rentPrice.value,
       location: e.target.location.value,
       imageURL: e.target.imageURL.value,
+      status: "Available",
       providerId: user?.uid,
       providerName: user?.displayName || "Unknown User",
       providerEmail: user?.email,

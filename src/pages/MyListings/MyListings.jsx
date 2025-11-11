@@ -13,6 +13,7 @@ import {
 import AuthContext from "../../contexts/AuthContext";
 import useAxios from "../../hooks/useAxios";
 import Loader from "../../components/Loader";
+import UpdateCarModal from "./UpdateCarModal";
 
 const MyListings = () => {
   const { user } = use(AuthContext);
@@ -20,6 +21,9 @@ const MyListings = () => {
   const axios = useAxios();
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCar, setSelectedCar] = useState(null);
+  const [openUpdateModal, setOpenUpdateModal] = useState(false);
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const fetchMyCars = async () => {
     if (!user?.email) return;
@@ -41,6 +45,39 @@ const MyListings = () => {
     fetchMyCars();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
+
+  const handleUpdate = (car) => {
+    setSelectedCar(car);
+    setOpenUpdateModal(true);
+  };
+
+  const handleCloseUpdateModal = () => {
+    setOpenUpdateModal(false);
+    setSelectedCar(null);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`/cars/${selectedCar._id}`);
+      toast.success("Car deleted successfully!");
+      setCars(cars.filter((car) => car._id !== selectedCar._id));
+      setOpenDeleteModal(false);
+      setSelectedCar(null);
+    } catch (error) {
+      console.error("Failed to delete car:", error);
+      toast.error("Failed to delete car. Please try again.");
+    }
+  };
+
+  const handleOpenDeleteModal = (car) => {
+    setSelectedCar(car);
+    setOpenDeleteModal(true);
+  };
+
+  const closeDeleteModal = () => {
+    setOpenDeleteModal(false);
+    setSelectedCar(null);
+  };
 
   if (loading) {
     return <Loader />;
@@ -158,8 +195,14 @@ const MyListings = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute top-3 right-3">
-                    <span className="badge badge-lg bg-accent text-white border-0 font-body font-semibold shadow-lg">
-                      Available
+                    <span
+                      className={`badge badge-lg border-0 font-body font-semibold shadow-lg ${
+                        car.status === "Available"
+                          ? "bg-accent text-white"
+                          : "bg-error text-white"
+                      }`}
+                    >
+                      {car.status}
                     </span>
                   </div>
                   <div className="absolute top-3 left-3">
@@ -221,12 +264,15 @@ const MyListings = () => {
                   {/* Action Buttons */}
                   <div className="grid grid-cols-2 gap-3">
                     <button
-                      onClick={() => navigate(`/update-car/${car._id}`)}
+                      onClick={() => handleUpdate(car)}
                       className="btn btn-outline btn-sm h-10 border-2 border-secondary text-secondary hover:bg-secondary hover:text-white hover:border-secondary font-body font-medium transition-all duration-300"
                     >
                       <FaEdit className="text-base" /> Edit
                     </button>
-                    <button className="btn btn-outline btn-sm h-10 border-2 border-error text-error hover:bg-error hover:text-white hover:border-error font-body font-medium transition-all duration-300">
+                    <button
+                      onClick={() => handleOpenDeleteModal(car)}
+                      className="btn btn-outline btn-sm h-10 border-2 border-error text-error hover:bg-error hover:text-white hover:border-error font-body font-medium transition-all duration-300"
+                    >
                       <FaTrashAlt className="text-base" /> Delete
                     </button>
                   </div>
@@ -236,6 +282,79 @@ const MyListings = () => {
           </div>
         )}
       </div>
+
+      {/* Update Car Modal */}
+      <UpdateCarModal
+        car={selectedCar}
+        isOpen={openUpdateModal}
+        onClose={handleCloseUpdateModal}
+        onUpdate={fetchMyCars}
+      />
+
+      {/* Delete Confirmation Modal */}
+      {openDeleteModal && selectedCar && (
+        <dialog open className="modal modal-open">
+          <div className="modal-box bg-base-100 border-2 border-base-300 shadow-2xl max-w-md">
+            {/* Modal Header */}
+            <div className="text-center mb-6">
+              <div className="w-20 h-20 bg-error/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <FaTrashAlt className="text-5xl text-error" />
+              </div>
+              <h3 className="font-heading font-bold text-2xl text-neutral mb-2">
+                Delete Listing?
+              </h3>
+              <p className="text-base text-neutral-medium font-body">
+                Are you sure you want to delete this car listing?
+              </p>
+            </div>
+
+            {/* Car Info */}
+            <div className="bg-base-200 rounded-xl p-4 mb-6">
+              <div className="flex items-center gap-4">
+                <img
+                  src={selectedCar.imageURL}
+                  alt={selectedCar.carName}
+                  className="w-20 h-20 object-cover rounded-lg"
+                />
+                <div className="flex-1">
+                  <h4 className="font-heading font-semibold text-neutral mb-1">
+                    {selectedCar.carName}
+                  </h4>
+                  <p className="text-sm text-neutral-medium font-body">
+                    {selectedCar.category} • ৳
+                    {Number(selectedCar.rentPrice).toLocaleString()}/day
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <p className="text-sm text-neutral-medium font-body text-center mb-6">
+              This action cannot be undone. The listing will be permanently
+              removed from the platform.
+            </p>
+
+            {/* Action Buttons */}
+            <div className="modal-action justify-center gap-3">
+              <button
+                onClick={closeDeleteModal}
+                className="btn btn-outline flex-1 h-12 border-2 border-base-300 text-neutral hover:bg-base-200 hover:border-neutral font-body font-medium transition-all duration-300"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleDelete}
+                className="btn bg-error hover:bg-error/90 text-white border-0 flex-1 h-12 font-body font-semibold transition-all duration-300"
+              >
+                <FaTrashAlt className="text-base" /> Delete Listing
+              </button>
+            </div>
+          </div>
+          <div
+            className="modal-backdrop bg-black/50"
+            onClick={closeDeleteModal}
+          ></div>
+        </dialog>
+      )}
     </div>
   );
 };
