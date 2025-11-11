@@ -25,15 +25,18 @@ const AddCar = () => {
       rentPrice: e.target.rentPrice.value,
       location: e.target.location.value,
       imageURL: e.target.imageURL.value,
-      providerName: user?.displayName || "Unknowon User",
+      providerId: user?.uid,
+      providerName: user?.displayName || "Unknown User",
       providerEmail: user?.email,
       dateAdded: new Date().toISOString(),
     };
 
     try {
-      await axios.post("/cars", carData);
+      await axios.post("/api/cars", carData);
       console.log("Car Data:", carData);
       toast.success("Car added successfully!");
+      e.target.reset();
+      //   navigate("/my-cars");
     } catch (error) {
       console.error("Failed to add car:", error);
       toast.error("Failed to add car. Please try again.");
@@ -41,7 +44,7 @@ const AddCar = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-base-200 via-base-100 to-base-200 py-12 px-4 md:px-8">
+    <div className="min-h-screen py-12 px-4 md:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-10">

@@ -37,3 +37,242 @@
   --font-heading: "Poppins", sans-serif;
   --font-body: "Inter", sans-serif;
 }
+
+/* Background Animations for MainLayout */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes pulse-slower {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-20px);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+.animate-pulse-slower {
+  animation: pulse-slower 10s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Grid Pattern Background */
+.bg-grid-pattern {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Blob Animation for Background */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Floating animations for geometric shapes */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(12deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(18deg);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-30px) translateX(10px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 10s ease-in-out infinite;
+}
+
+/* Pulse animations with varying speeds */
+.animate-pulse-very-slow {
+  animation: pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.animate-pulse-slower {
+  animation: pulse 5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Very slow spin animation */
+@keyframes spin-very-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-very-slow {
+  animation: spin-very-slow 30s linear infinite;
+}
+
+/* Car animations - driving across screen */
+@keyframes car-drive-right {
+  0% {
+    transform: translateX(-100px) scaleX(-1);
+  }
+  100% {
+    transform: translateX(calc(100vw + 100px)) scaleX(-1);
+  }
+}
+
+@keyframes car-drive-left {
+  0% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(calc(-100vw - 100px));
+  }
+}
+
+.animate-car-right {
+  animation: car-drive-right 15s linear infinite;
+}
+
+.animate-car-right-slow {
+  animation: car-drive-right 25s linear infinite;
+}
+
+.animate-car-left {
+  animation: car-drive-left 20s linear infinite;
+}
+
+/* Dollar sign spinning and floating */
+@keyframes spin-and-float {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(360deg);
+  }
+}
+
+@keyframes spin-slow-reverse {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(-180deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(-360deg) scale(1);
+  }
+}
+
+@keyframes spin-and-pulse {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+    opacity: 0.08;
+  }
+  50% {
+    transform: rotate(180deg) scale(1.3);
+    opacity: 0.15;
+  }
+}
+
+.animate-spin-and-float {
+  animation: spin-and-float 8s ease-in-out infinite;
+}
+
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 10s ease-in-out infinite;
+}
+
+.animate-spin-and-pulse {
+  animation: spin-and-pulse 12s ease-in-out infinite;
+}
+
+/* Key floating and rotating */
+@keyframes float-and-rotate {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) rotate(10deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-5deg);
+  }
+  75% {
+    transform: translateY(-20px) rotate(15deg);
+  }
+}
+
+.animate-float-and-rotate {
+  animation: float-and-rotate 6s ease-in-out infinite;
+}

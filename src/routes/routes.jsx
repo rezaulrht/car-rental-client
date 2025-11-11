@@ -4,6 +4,7 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import Error404 from "../components/error404";
+import AddCar from "../pages/AddCar/AddCar";
 
 
 const router = createBrowserRouter([
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register
+      },
+      {
+        path: "/add-car",
+        Component: AddCar
       }
     ],
   },
