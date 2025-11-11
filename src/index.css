@@ -276,3 +276,111 @@
 .animate-float-and-rotate {
   animation: float-and-rotate 6s ease-in-out infinite;
 }
+
+/* Loader animations */
+@keyframes road-slide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(300%);
+  }
+}
+
+@keyframes car-bounce {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes spin-smooth {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin-fast {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce-delay-0 {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-delay-150 {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce-delay-300 {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+.animate-road-slide {
+  animation: road-slide 2s ease-in-out infinite;
+}
+
+.animate-car-bounce {
+  animation: car-bounce 1s ease-in-out infinite;
+}
+
+.animate-spin-smooth {
+  animation: spin-smooth 2s linear infinite;
+}
+
+.animate-spin-fast {
+  animation: spin-fast 0.5s linear infinite;
+}
+
+.animate-bounce-delay-0 {
+  animation: bounce-delay-0 1.4s infinite;
+  animation-delay: 0s;
+}
+
+.animate-bounce-delay-150 {
+  animation: bounce-delay-150 1.4s infinite;
+  animation-delay: 0.15s;
+}
+
+.animate-bounce-delay-300 {
+  animation: bounce-delay-300 1.4s infinite;
+  animation-delay: 0.3s;
+}

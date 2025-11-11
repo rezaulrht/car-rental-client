@@ -5,6 +5,8 @@ import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import Error404 from "../components/error404";
 import AddCar from "../pages/AddCar/AddCar";
+import PrivateRoute from "./PrivateRoutes";
+import MyListings from "../pages/MyListings/MyListings";
 
 
 const router = createBrowserRouter([
@@ -26,8 +28,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/add-car",
-        Component: AddCar
-      }
+        element: <PrivateRoute><AddCar /></PrivateRoute>
+      },
+      {
+        path: "/my-listings",
+        element: <PrivateRoute><MyListings /></PrivateRoute>
+      },
     ],
   },
   {

@@ -1,13 +1,15 @@
-import React, { useEffect, use } from "react";
+import React, { useEffect, use, useState } from "react";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import AuthContext from "../../contexts/AuthContext";
 import useAxios from "../../hooks/useAxios";
+import Loader from "../../components/Loader";
 
 const AddCar = () => {
   const { user } = use(AuthContext);
   const navigate = useNavigate();
   const axios = useAxios();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     document.title = "Add Car - RentWheels";
@@ -32,7 +34,8 @@ const AddCar = () => {
     };
 
     try {
-      await axios.post("/api/cars", carData);
+      setLoading(true);
+      await axios.post("/cars", carData);
       console.log("Car Data:", carData);
       toast.success("Car added successfully!");
       e.target.reset();
@@ -40,8 +43,14 @@ const AddCar = () => {
     } catch (error) {
       console.error("Failed to add car:", error);
       toast.error("Failed to add car. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="min-h-screen py-12 px-4 md:px-8">
