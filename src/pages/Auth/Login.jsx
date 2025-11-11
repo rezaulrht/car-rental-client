@@ -1,5 +1,5 @@
 import React, { useState, useEffect, use } from "react";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { HiMail, HiLockClosed, HiEye, HiEyeOff } from "react-icons/hi";
 import { FaGoogle } from "react-icons/fa";
 import toast from "react-hot-toast";
@@ -8,6 +8,8 @@ import AuthContext from "../../contexts/AuthContext";
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { loginUser, loginUserwithGoogle } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Login - RentWheels";
@@ -21,6 +23,7 @@ const Login = () => {
     loginUser(email, password)
       .then(() => {
         toast.success("Login successful!");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         toast.error(error.message);
@@ -31,6 +34,7 @@ const Login = () => {
     loginUserwithGoogle()
       .then(() => {
         toast.success("Login successful!");
+        navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         toast.error(error.message);

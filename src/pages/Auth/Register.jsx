@@ -1,5 +1,5 @@
 import React, { useState, useEffect, use } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import {
   HiMail,
   HiLockClosed,
@@ -16,6 +16,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, loginUserwithGoogle, updateUserProfile } =
     use(AuthContext);
+    const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "Register - RentWheels";
@@ -37,7 +38,7 @@ const Register = () => {
     return errors;
   };
 
-  const handleValidation = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
 
     const name = e.target.name.value;
@@ -57,10 +58,12 @@ const Register = () => {
     }
 
     createUser(email, password)
-      .then(() => {
+      .then((result) => {
+        console.log("Firebase User:", result.user);
         updateUserProfile(name, photoURL)
           .then(() => {
             toast.success("Registration successful!");
+            navigate("/");
           })
           .catch((error) => {
             toast.error(error.message);
@@ -104,7 +107,7 @@ const Register = () => {
             </p>
           </div>
 
-          <form onSubmit={handleValidation} className="space-y-4">
+          <form onSubmit={handleRegister} className="space-y-4">
             <div>
               <label
                 htmlFor="name"
