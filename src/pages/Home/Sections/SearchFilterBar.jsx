@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 import { FaSearch } from "react-icons/fa";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 const SearchFilterBar = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      navigate(`/browse?search=${encodeURIComponent(searchQuery)}`);
+    } else {
+      navigate("/browse");
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   return (
     <section className="relative -mt-20 z-20 px-6">
       <motion.div
@@ -17,25 +34,27 @@ const SearchFilterBar = () => {
           <div className="relative flex-1">
             <input
               type="text"
-              placeholder="Search for cars by name, brand, or model..."
+              placeholder="Search for cars by name..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
               className="input input-bordered bg-white border-base-300 w-full h-14 pl-12 pr-4 text-neutral font-body text-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-medium text-xl" />
           </div>
 
-          <Link to="/browse">
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 0 25px rgba(37, 99, 235, 0.4)",
-              }}
-              whileTap={{ scale: 0.95 }}
-              className="btn btn-primary h-14 px-8 text-base font-body font-semibold text-white border-0"
-            >
-              <FaSearch className="mr-2" />
-              Search
-            </motion.button>
-          </Link>
+          <motion.button
+            onClick={handleSearch}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 0 25px rgba(37, 99, 235, 0.4)",
+            }}
+            whileTap={{ scale: 0.95 }}
+            className="btn btn-primary h-14 px-8 text-base font-body font-semibold text-white border-0"
+          >
+            <FaSearch className="mr-2" />
+            Search
+          </motion.button>
         </div>
       </motion.div>
     </section>

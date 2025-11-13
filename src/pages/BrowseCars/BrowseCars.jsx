@@ -1,29 +1,73 @@
-import React, { useEffect, useState } from "react";
-import { FaSearch } from "react-icons/fa";
+import React, { useEffect, useState, useRef } from "react";
+import { FaSearch, FaTimes } from "react-icons/fa";
 import CarsCard from "../../components/CarsCard";
 import useAxios from "../../hooks/useAxios";
 import Loader from "../../components/Loader";
+import { useSearchParams } from "react-router";
 
 const BrowseCars = () => {
   const axios = useAxios();
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("search") || ""
+  );
+  const searchInputRef = useRef(null);
 
-  const fetchCars = async () => {
+  const fetchCars = async (query = "") => {
     try {
       setLoading(true);
-      const response = await axios.get("/cars");
+      const url = query ? `/cars?search=${encodeURIComponent(query)}` : "/cars";
+      const response = await axios.get(url);
       setCars(response.data);
     } catch (error) {
       console.error("Error fetching cars:", error);
     } finally {
       setLoading(false);
+      
+      if (searchInputRef.current) {
+        searchInputRef.current.focus();
+      }
     }
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+  };
+
+  
+  useEffect(() => {
+    const delayDebounce = setTimeout(() => {
+      if (searchQuery.trim()) {
+        setSearchParams({ search: searchQuery });
+        fetchCars(searchQuery);
+      } else {
+        setSearchParams({});
+        fetchCars();
+      }
+    }, 1000); // 1 sec por load hobe
+
+    return () => clearTimeout(delayDebounce);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchQuery]);
+
+  const handleClearSearch = () => {
+    setSearchQuery("");
+    setSearchParams({});
+    fetchCars();
   };
 
   useEffect(() => {
     document.title = "Browse Cars - RentWheels";
-    fetchCars();
+    const searchParam = searchParams.get("search");
+    if (searchParam) {
+      setSearchQuery(searchParam);
+      fetchCars(searchParam);
+    } else {
+      fetchCars();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -44,21 +88,43 @@ const BrowseCars = () => {
         </div>
 
         <div className="bg-base-100 rounded-2xl shadow-xl border-2 border-base-300 p-6 mb-12">
-          <div className="flex items-center gap-4">
-            <div className="relative flex-1">
-              <input
-                type="text"
-                placeholder="Search for cars by name, brand, or model..."
-                className="input input-bordered bg-base-100 border-base-300 w-full h-14 pl-12 pr-4 text-neutral placeholder:text-neutral-light font-body text-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-              />
-              <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-medium text-xl" />
-            </div>
-
-            <button className="btn btn-primary h-14 px-8 text-base font-body font-semibold text-white border-0 hover:scale-105 transition-all duration-300">
-              <FaSearch className="mr-2" />
-              Search
-            </button>
+          <div className="relative">
+            <input
+              ref={searchInputRef}
+              type="text"
+              placeholder="Search for cars by name..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              autoFocus
+              className="input input-bordered bg-base-100 border-base-300 w-full h-14 pl-12 pr-12 text-neutral placeholder:text-neutral-light font-body text-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+            />
+            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-medium text-xl" />
+            {searchQuery && (
+              <button
+                onClick={handleClearSearch}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-medium hover:text-error transition-colors"
+              >
+                <FaTimes className="text-xl" />
+              </button>
+            )}
           </div>
+
+          {searchQuery && (
+            <div className="mt-4 flex items-center gap-2">
+              <span className="text-sm text-neutral-medium font-body">
+                Searching for:{" "}
+                <span className="font-semibold text-neutral">
+                  {searchQuery}
+                </span>
+              </span>
+              <button
+                onClick={handleClearSearch}
+                className="text-sm text-primary hover:underline font-body"
+              >
+                Clear search
+              </button>
+            </div>
+          )}
         </div>
 
         {cars.length > 0 && (
@@ -81,11 +147,21 @@ const BrowseCars = () => {
               <span className="text-6xl">🚗</span>
             </div>
             <h3 className="text-2xl font-heading font-bold text-neutral mb-3">
-              No Cars Available Right Now
+              {searchQuery ? "No Cars Found" : "No Cars Available Right Now"}
             </h3>
             <p className="text-base text-neutral-medium font-body">
-              Check back later for new listings from our trusted providers.
+              {searchQuery
+                ? `No cars found matching "${searchQuery}". Try a different search term.`
+                : "Check back later for new listings from our trusted providers."}
             </p>
+            {searchQuery && (
+              <button
+                onClick={handleClearSearch}
+                className="btn btn-primary mt-6"
+              >
+                Clear Search & View All Cars
+              </button>
+            )}
           </div>
         )}
       </div>
