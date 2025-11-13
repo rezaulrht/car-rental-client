@@ -11,10 +11,12 @@ import MyBookings from "../pages/MyBookings/MyBookings";
 import BrowseCars from "../pages/BrowseCars/BrowseCars";
 import LearnMore from "../pages/LearnMore/LearnMore";
 import CarDetails from "../pages/CarDetails/CarDetails";
+import Loader from "../components/Loader";
 
 const router = createBrowserRouter([
   {
     path: "/",
+    hydrateFallbackElement: <Loader />,
     Component: MainLayout,
     children: [
       {
