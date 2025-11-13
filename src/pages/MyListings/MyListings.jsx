@@ -84,70 +84,70 @@ const MyListings = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 md:px-8">
+    <div className="min-h-screen py-8 md:py-12 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-10">
+        <div className="mb-6 md:mb-10">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
-              <h1 className="text-3xl md:text-4xl font-heading font-bold text-neutral mb-2">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-neutral mb-2">
                 My <span className="text-primary">Listings</span>
               </h1>
-              <p className="text-base md:text-lg text-neutral-medium font-body">
+              <p className="text-sm md:text-base lg:text-lg text-neutral-medium font-body">
                 Manage your car rental listings
               </p>
             </div>
             <button
               onClick={() => navigate("/add-car")}
-              className="btn btn-primary h-12 px-6 text-base font-body font-semibold text-white border-0 hover:scale-105 transition-all duration-300"
+              className="btn btn-primary h-11 md:h-12 px-5 md:px-6 text-sm md:text-base font-body font-semibold text-white border-0 hover:scale-105 transition-all duration-300 w-full md:w-auto"
             >
-              <FaPlus className="text-lg" /> Add New Car
+              <FaPlus className="text-base md:text-lg" /> Add New Car
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
-            <div className="bg-base-100 rounded-xl p-6 border-2 border-base-300 shadow-lg">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8">
+            <div className="bg-base-100 rounded-xl p-4 md:p-6 border-2 border-base-300 shadow-lg">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                  <FaCar className="text-2xl text-primary" />
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                  <FaCar className="text-xl md:text-2xl text-primary" />
                 </div>
                 <div>
-                  <p className="text-2xl font-heading font-bold text-neutral">
+                  <p className="text-xl md:text-2xl font-heading font-bold text-neutral">
                     {cars.length}
                   </p>
-                  <p className="text-sm text-neutral-medium font-body">
+                  <p className="text-xs md:text-sm text-neutral-medium font-body">
                     Total Listings
                   </p>
                 </div>
               </div>
             </div>
-            <div className="bg-base-100 rounded-xl p-6 border-2 border-base-300 shadow-lg">
+            <div className="bg-base-100 rounded-xl p-4 md:p-6 border-2 border-base-300 shadow-lg">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
-                  <FaCheckCircle className="text-2xl text-accent" />
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-accent/10 rounded-full flex items-center justify-center shrink-0">
+                  <FaCheckCircle className="text-xl md:text-2xl text-accent" />
                 </div>
                 <div>
-                  <p className="text-2xl font-heading font-bold text-neutral">
+                  <p className="text-xl md:text-2xl font-heading font-bold text-neutral">
                     {cars.length}
                   </p>
-                  <p className="text-sm text-neutral-medium font-body">
+                  <p className="text-xs md:text-sm text-neutral-medium font-body">
                     Active Cars
                   </p>
                 </div>
               </div>
             </div>
-            <div className="bg-base-100 rounded-xl p-6 border-2 border-base-300 shadow-lg">
+            <div className="bg-base-100 rounded-xl p-4 md:p-6 border-2 border-base-300 shadow-lg">
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center">
-                  <FaMoneyBillWave className="text-2xl text-secondary" />
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-secondary/10 rounded-full flex items-center justify-center shrink-0">
+                  <FaMoneyBillWave className="text-xl md:text-2xl text-secondary" />
                 </div>
-                <div>
-                  <p className="text-2xl font-heading font-bold text-neutral">
+                <div className="min-w-0">
+                  <p className="text-xl md:text-2xl font-heading font-bold text-neutral truncate">
                     ৳
                     {cars
                       .reduce((sum, car) => sum + Number(car.rentPrice), 0)
                       .toLocaleString()}
                   </p>
-                  <p className="text-sm text-neutral-medium font-body">
+                  <p className="text-xs md:text-sm text-neutral-medium font-body">
                     Total Daily Value
                   </p>
                 </div>
@@ -157,29 +157,28 @@ const MyListings = () => {
         </div>
 
         {cars.length === 0 ? (
-          <div className="bg-base-100 rounded-2xl border-2 border-base-300 shadow-xl p-12 text-center">
+          <div className="bg-base-100 rounded-2xl border-2 border-base-300 shadow-xl p-8 md:p-12 text-center">
             <div className="max-w-md mx-auto">
-              <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaCar className="text-6xl text-primary/30" />
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 md:mb-6">
+                <FaCar className="text-5xl md:text-6xl text-primary/30" />
               </div>
-              <h3 className="text-2xl font-heading font-bold text-neutral mb-3">
+              <h3 className="text-xl md:text-2xl font-heading font-bold text-neutral mb-2 md:mb-3">
                 No Listings Yet
               </h3>
-              <p className="text-base text-neutral-medium font-body mb-6">
+              <p className="text-sm md:text-base text-neutral-medium font-body mb-4 md:mb-6">
                 Start earning by listing your first car on our platform. It's
                 quick and easy!
               </p>
               <button
                 onClick={() => navigate("/add-car")}
-                className="btn btn-primary h-12 px-8 text-base font-body font-semibold text-white border-0 hover:scale-105 transition-all duration-300"
+                className="btn btn-primary h-11 md:h-12 px-6 md:px-8 text-sm md:text-base font-body font-semibold text-white border-0 hover:scale-105 transition-all duration-300 w-full md:w-auto"
               >
                 List Your First Car
               </button>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {cars.map((car) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">{cars.map((car) => (
               <div
                 key={car._id}
                 className="bg-base-100 rounded-2xl border-2 border-base-300 shadow-xl overflow-hidden hover:shadow-2xl hover:border-primary/30 transition-all duration-300 group"
@@ -208,29 +207,29 @@ const MyListings = () => {
                   </div>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-heading font-bold text-neutral mb-2 line-clamp-1">
+                <div className="p-4 md:p-6">
+                  <h3 className="text-lg md:text-xl font-heading font-bold text-neutral mb-2 line-clamp-1">
                     {car.carName}
                   </h3>
 
-                  <p className="text-sm text-neutral-medium font-body mb-4 line-clamp-2 leading-relaxed">
+                  <p className="text-xs md:text-sm text-neutral-medium font-body mb-3 md:mb-4 line-clamp-2 leading-relaxed">
                     {car.description}
                   </p>
 
-                  <div className="flex items-center gap-2 mb-4">
-                    <FaMapMarkerAlt className="text-neutral-medium" />
-                    <span className="text-sm text-neutral-medium font-body">
+                  <div className="flex items-center gap-2 mb-3 md:mb-4">
+                    <FaMapMarkerAlt className="text-neutral-medium text-sm" />
+                    <span className="text-xs md:text-sm text-neutral-medium font-body">
                       {car.location}
                     </span>
                   </div>
 
-                  <div className="bg-secondary/10 rounded-xl p-4 mb-4 border border-secondary/20">
+                  <div className="bg-secondary/10 rounded-xl p-3 md:p-4 mb-3 md:mb-4 border border-secondary/20">
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-neutral-medium font-body">
+                      <span className="text-xs md:text-sm text-neutral-medium font-body">
                         Daily Rate
                       </span>
                       <div className="text-right">
-                        <p className="text-2xl font-heading font-bold text-secondary">
+                        <p className="text-xl md:text-2xl font-heading font-bold text-secondary">
                           ৳{Number(car.rentPrice).toLocaleString()}
                         </p>
                         <p className="text-xs text-neutral-medium font-body">
@@ -240,7 +239,7 @@ const MyListings = () => {
                     </div>
                   </div>
 
-                  <div className="mb-4 pb-4 border-b border-base-300">
+                  <div className="mb-3 md:mb-4 pb-3 md:pb-4 border-b border-base-300">
                     <p className="text-xs text-neutral-light font-body">
                       Listed on{" "}
                       {new Date(car.dateAdded).toLocaleDateString("en-US", {
@@ -251,18 +250,18 @@ const MyListings = () => {
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-2 gap-2 md:gap-3">
                     <button
                       onClick={() => handleUpdate(car)}
-                      className="btn btn-outline btn-sm h-10 border-2 border-secondary text-secondary hover:bg-secondary hover:text-white hover:border-secondary font-body font-medium transition-all duration-300"
+                      className="btn btn-outline btn-sm h-9 md:h-10 text-xs md:text-sm border-2 border-secondary text-secondary hover:bg-secondary hover:text-white hover:border-secondary font-body font-medium transition-all duration-300"
                     >
-                      <FaEdit className="text-base" /> Edit
+                      <FaEdit className="text-sm md:text-base" /> Edit
                     </button>
                     <button
                       onClick={() => handleOpenDeleteModal(car)}
-                      className="btn btn-outline btn-sm h-10 border-2 border-error text-error hover:bg-error hover:text-white hover:border-error font-body font-medium transition-all duration-300"
+                      className="btn btn-outline btn-sm h-9 md:h-10 text-xs md:text-sm border-2 border-error text-error hover:bg-error hover:text-white hover:border-error font-body font-medium transition-all duration-300"
                     >
-                      <FaTrashAlt className="text-base" /> Delete
+                      <FaTrashAlt className="text-sm md:text-base" /> Delete
                     </button>
                   </div>
                 </div>
