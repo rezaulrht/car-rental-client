@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router";
+import { Typewriter } from "react-simple-typewriter";
 
 const HeroBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -41,7 +42,7 @@ const HeroBanner = () => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 8000); // Increased to 8 seconds to allow typewriter to complete
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -83,12 +84,21 @@ const HeroBanner = () => {
           <div className="relative h-full max-w-7xl mx-auto px-6 flex items-center">
             <div className="max-w-2xl text-white">
               <motion.h1
+                key={`title-${currentSlide}`}
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl md:text-7xl font-heading font-bold mb-4"
+                className="text-5xl md:text-7xl font-heading font-bold mb-4 min-h-[120px] md:min-h-40"
               >
-                {slides[currentSlide].title}
+                <Typewriter
+                  words={[slides[currentSlide].title]}
+                  loop={false}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={100}
+                  deleteSpeed={100}
+                  delaySpeed={2000}
+                />
               </motion.h1>
 
               <motion.h2
