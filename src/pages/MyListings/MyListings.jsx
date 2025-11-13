@@ -26,11 +26,11 @@ const MyListings = () => {
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
   const fetchMyCars = async () => {
-    if (!user?.email) return;
+    if (!user?.uid) return;
 
     try {
       setLoading(true);
-      const response = await axios.get(`/cars?email=${user.email}`);
+      const response = await axios.get(`/cars?uid=${user.uid}`);
       setCars(response.data);
     } catch (error) {
       console.error("Failed to fetch cars:", error);

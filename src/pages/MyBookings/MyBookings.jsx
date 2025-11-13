@@ -29,7 +29,7 @@ const MyBookings = () => {
   }, []);
 
   useEffect(() => {
-    if (user?.email) {
+    if (user?.uid) {
       fetchMyBookings();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

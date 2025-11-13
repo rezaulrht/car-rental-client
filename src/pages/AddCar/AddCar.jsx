@@ -29,8 +29,9 @@ const AddCar = () => {
       imageURL: e.target.imageURL.value,
       status: "Available",
       providerId: user?.uid,
+      providerUid: user?.uid, // Added for consistency
       providerName: user?.displayName || "Unknown User",
-      providerEmail: user?.email,
+      providerEmail: user?.email || "", // Keep for display purposes
       dateAdded: new Date().toISOString().split("T")[0],
     };
 

@@ -27,7 +27,7 @@ const CarBooking = ({ car, isOpen, onClose }) => {
   const handleBooking = async (e) => {
     e.preventDefault();
 
-    if (user.email === car.providerEmail) {
+    if (user.uid === car.providerUid || user.uid === car.providerId) {
       toast.error("You cannot book your own car");
       return;
     }
