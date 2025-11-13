@@ -50,7 +50,10 @@ const UpdateCarModal = ({ car, isOpen, onClose, onUpdate }) => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-3 md:space-y-4 px-2 md:px-0">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-3 md:space-y-4 px-2 md:px-0"
+        >
           <div className="form-control">
             <label className="label py-1">
               <span className="label-text text-neutral font-body font-medium text-sm">

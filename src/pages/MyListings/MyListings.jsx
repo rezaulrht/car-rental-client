@@ -178,7 +178,8 @@ const MyListings = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">{cars.map((car) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            {cars.map((car) => (
               <div
                 key={car._id}
                 className="bg-base-100 rounded-2xl border-2 border-base-300 shadow-xl overflow-hidden hover:shadow-2xl hover:border-primary/30 transition-all duration-300 group"

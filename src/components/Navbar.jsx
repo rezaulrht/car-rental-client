@@ -104,15 +104,15 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-50">
-      <div className="navbar bg-base-100 shadow-md border-b border-base-300 h-16 md:h-20 px-4 md:px-8">
+      <div className="navbar bg-base-100 shadow-md border-b border-base-300 h-16 md:h-20 px-3 md:px-6 lg:px-8">
         <div className="navbar-start">
           <div className="dropdown">
             <div
               tabIndex={0}
               role="button"
-              className="btn btn-ghost lg:hidden p-2"
+              className="btn btn-ghost lg:hidden p-1.5 md:p-2"
             >
-              <HiMenu className="h-6 w-6" />
+              <HiMenu className="h-5 w-5 md:h-6 md:w-6" />
             </div>
             <ul
               tabIndex={0}
@@ -126,7 +126,7 @@ const Navbar = () => {
                   <li>
                     <button
                       onClick={handleLogout}
-                      className="text-error hover:bg-error/10 font-body text-base py-3"
+                      className="text-error hover:bg-error/10 font-body text-sm md:text-base py-3"
                     >
                       Log Out
                     </button>
@@ -149,12 +149,12 @@ const Navbar = () => {
 
           <Link
             to="/"
-            className="btn btn-ghost text-xl md:text-2xl font-heading font-bold hover:scale-105 transition-transform duration-300 normal-case"
+            className="btn btn-ghost text-base md:text-xl lg:text-2xl font-heading font-bold hover:scale-105 transition-transform duration-300 normal-case px-2 md:px-4"
           >
             <img
               src="/logo.png"
               alt="RentWheels Logo"
-              className="w-8 h-8 md:w-10 md:h-10 mr-1"
+              className="w-7 h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 mr-1"
             />
             <span className="text-neutral">
               Rent<span className="text-primary">Wheels</span>
@@ -169,7 +169,7 @@ const Navbar = () => {
         <div className="navbar-end">
           {loading ? (
             <div className="flex items-center gap-2">
-              <span className="loading loading-spinner loading-md text-primary"></span>
+              <span className="loading loading-spinner loading-sm md:loading-md text-primary"></span>
             </div>
           ) : user ? (
             <div className="dropdown dropdown-end">
@@ -178,7 +178,7 @@ const Navbar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                <div className="w-8 md:w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                   <img
                     alt={user?.displayName || "User avatar"}
                     src={user?.photoURL || "https://via.placeholder.com/150"}
@@ -187,13 +187,13 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="dropdown-content menu bg-base-100 rounded-box z-50 w-56 p-3 shadow-xl border border-base-300 mt-3"
+                className="dropdown-content menu bg-base-100 rounded-box z-50 w-52 md:w-56 p-3 shadow-xl border border-base-300 mt-3"
               >
                 <li className="menu-title px-4 py-2 mb-1">
-                  <span className="font-semibold text-neutral font-body text-base">
+                  <span className="font-semibold text-neutral font-body text-sm md:text-base truncate">
                     {user?.displayName || "User"}
                   </span>
-                  <span className="text-xs text-neutral-medium font-body">
+                  <span className="text-xs text-neutral-medium font-body truncate">
                     {user?.email}
                   </span>
                 </li>
@@ -202,7 +202,7 @@ const Navbar = () => {
                   <NavLink
                     to="/add-car"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body py-2 ${
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
                         isActive ? "text-primary font-semibold" : ""
                       }`
                     }
@@ -214,7 +214,7 @@ const Navbar = () => {
                   <NavLink
                     to="/my-listings"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body py-2 ${
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
                         isActive ? "text-primary font-semibold" : ""
                       }`
                     }
@@ -226,7 +226,7 @@ const Navbar = () => {
                   <NavLink
                     to="/my-bookings"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body py-2 ${
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
                         isActive ? "text-primary font-semibold" : ""
                       }`
                     }
@@ -238,7 +238,7 @@ const Navbar = () => {
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="text-error hover:bg-error/10 font-body py-2 font-medium"
+                    className="text-error hover:bg-error/10 font-body text-sm md:text-base py-2 font-medium"
                   >
                     Log Out
                   </button>
@@ -248,7 +248,7 @@ const Navbar = () => {
           ) : (
             <Link
               to="/login"
-              className="btn btn-primary btn-sm h-10 md:h-12 rounded-full px-5 md:px-8 text-white font-body font-medium text-sm md:text-base border-0 hover:scale-105 hover:shadow-lg transition-all duration-300"
+              className="btn btn-primary btn-sm h-9 md:h-10 lg:h-12 rounded-full px-4 md:px-5 lg:px-8 text-white font-body font-medium text-xs md:text-sm lg:text-base border-0 hover:scale-105 hover:shadow-lg transition-all duration-300"
             >
               Login
             </Link>

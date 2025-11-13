@@ -143,21 +143,21 @@ const MyBookings = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 px-6">
+    <div className="min-h-screen py-8 md:py-12 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <FaCalendarAlt className="text-4xl text-primary" />
-            <h1 className="text-4xl md:text-5xl font-heading font-bold text-neutral">
+          <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
+            <FaCalendarAlt className="text-3xl md:text-4xl text-primary" />
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral">
               My <span className="text-primary">Bookings</span>
             </h1>
           </div>
-          <p className="text-lg text-neutral-medium font-body max-w-2xl mx-auto">
+          <p className="text-sm md:text-base lg:text-lg text-neutral-medium font-body max-w-2xl mx-auto px-4">
             Manage and track all your car rental bookings in one place
           </p>
         </motion.div>
@@ -167,17 +167,17 @@ const MyBookings = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="bg-base-100 rounded-2xl border-2 border-base-300 p-12 text-center"
+            className="bg-base-100 rounded-2xl border-2 border-base-300 p-8 md:p-12 text-center"
           >
-            <div className="flex justify-center mb-6">
-              <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center">
-                <FaCalendarAlt className="text-5xl text-primary" />
+            <div className="flex justify-center mb-4 md:mb-6">
+              <div className="w-20 h-20 md:w-24 md:h-24 bg-primary/10 rounded-full flex items-center justify-center">
+                <FaCalendarAlt className="text-4xl md:text-5xl text-primary" />
               </div>
             </div>
-            <h2 className="text-2xl font-heading font-bold text-neutral mb-3">
+            <h2 className="text-xl md:text-2xl font-heading font-bold text-neutral mb-2 md:mb-3">
               No Bookings Yet
             </h2>
-            <p className="text-base text-neutral-medium font-body mb-6 max-w-md mx-auto">
+            <p className="text-sm md:text-base text-neutral-medium font-body mb-4 md:mb-6 max-w-md mx-auto">
               You haven't made any car bookings yet. Browse our collection and
               find your perfect ride!
             </p>
@@ -185,36 +185,36 @@ const MyBookings = () => {
               href="/browse"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn btn-primary text-white border-0 px-8"
+              className="btn btn-primary text-white border-0 px-6 md:px-8 h-11 md:h-12 text-sm md:text-base w-full md:w-auto"
             >
               Browse Cars
             </motion.a>
           </motion.div>
         ) : (
           <>
-            <div className="flex items-center justify-between mb-6 bg-base-100 rounded-xl p-4 border border-base-300">
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <FaCar className="text-primary text-xl" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-6 bg-base-100 rounded-xl p-4 border border-base-300">
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                  <FaCar className="text-primary text-lg md:text-xl" />
                 </div>
                 <div>
-                  <p className="text-sm text-neutral-medium font-body">
+                  <p className="text-xs md:text-sm text-neutral-medium font-body">
                     Total Bookings
                   </p>
-                  <p className="text-xl font-heading font-bold text-neutral">
+                  <p className="text-lg md:text-xl font-heading font-bold text-neutral">
                     {bookings.length}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center">
-                  <FaMoneyBillWave className="text-accent text-xl" />
+              <div className="flex items-center gap-2 md:gap-3">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-accent/10 rounded-lg flex items-center justify-center shrink-0">
+                  <FaMoneyBillWave className="text-accent text-lg md:text-xl" />
                 </div>
                 <div>
-                  <p className="text-sm text-neutral-medium font-body">
+                  <p className="text-xs md:text-sm text-neutral-medium font-body">
                     Total Spent
                   </p>
-                  <p className="text-xl font-heading font-bold text-neutral">
+                  <p className="text-lg md:text-xl font-heading font-bold text-neutral">
                     ৳
                     {bookings
                       .reduce((sum, booking) => sum + booking.totalPrice, 0)
@@ -228,7 +228,7 @@ const MyBookings = () => {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="grid grid-cols-1 gap-6"
+              className="grid grid-cols-1 gap-4 md:gap-6"
             >
               {bookings.map((booking) => {
                 const status = getBookingStatus(
@@ -250,28 +250,28 @@ const MyBookings = () => {
                     className="bg-base-100 rounded-2xl border-2 border-base-300 overflow-hidden hover:border-primary/30 hover:shadow-xl transition-all duration-300"
                   >
                     <div className="md:flex">
-                      <div className="md:w-1/3 h-64 md:h-auto relative overflow-hidden bg-base-200">
+                      <div className="md:w-1/3 h-48 md:h-auto relative overflow-hidden bg-base-200">
                         <img
                           src={car.imageURL}
                           alt={car.carName}
                           className="w-full h-full object-cover"
                         />
-                        <div className="absolute top-4 right-4">
+                        <div className="absolute top-3 md:top-4 right-3 md:right-4">
                           <span
-                            className={`badge ${status.color} border-0 text-white font-semibold shadow-lg`}
+                            className={`badge ${status.color} border-0 text-white font-semibold shadow-lg text-xs md:text-sm`}
                           >
                             {status.label}
                           </span>
                         </div>
                       </div>
 
-                      <div className="md:w-2/3 p-6">
-                        <div className="flex items-start justify-between mb-4">
+                      <div className="md:w-2/3 p-4 md:p-6">
+                        <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-4 gap-3">
                           <div>
-                            <h3 className="text-2xl font-heading font-bold text-neutral mb-2">
+                            <h3 className="text-xl md:text-2xl font-heading font-bold text-neutral mb-2">
                               {car.carName}
                             </h3>
-                            <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-medium">
+                            <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm text-neutral-medium">
                               <div className="flex items-center gap-2">
                                 <FaMapMarkerAlt className="text-primary" />
                                 <span className="font-body">
@@ -286,21 +286,21 @@ const MyBookings = () => {
                               </div>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <p className="text-sm text-neutral-medium font-body mb-1">
+                          <div className="text-left md:text-right">
+                            <p className="text-xs md:text-sm text-neutral-medium font-body mb-1">
                               Total Cost
                             </p>
-                            <p className="text-3xl font-heading font-bold text-primary">
+                            <p className="text-2xl md:text-3xl font-heading font-bold text-primary">
                               ৳{booking.totalPrice.toLocaleString()}
                             </p>
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                          <div className="bg-base-200 rounded-xl p-4">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                                <FaCalendarAlt className="text-primary" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4 md:mb-6">
+                          <div className="bg-base-200 rounded-xl p-3 md:p-4">
+                            <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                              <div className="w-8 h-8 md:w-10 md:h-10 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                                <FaCalendarAlt className="text-primary text-sm md:text-base" />
                               </div>
                               <div>
                                 <p className="text-xs text-neutral-medium font-body">
@@ -308,8 +308,8 @@ const MyBookings = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="space-y-2">
-                              <div className="flex items-center justify-between text-sm">
+                            <div className="space-y-1 md:space-y-2">
+                              <div className="flex items-center justify-between text-xs md:text-sm">
                                 <span className="text-neutral-medium font-body">
                                   Start:
                                 </span>
@@ -323,7 +323,7 @@ const MyBookings = () => {
                                   })}
                                 </span>
                               </div>
-                              <div className="flex items-center justify-between text-sm">
+                              <div className="flex items-center justify-between text-xs md:text-sm">
                                 <span className="text-neutral-medium font-body">
                                   End:
                                 </span>
@@ -341,10 +341,10 @@ const MyBookings = () => {
                             </div>
                           </div>
 
-                          <div className="bg-base-200 rounded-xl p-4">
-                            <div className="flex items-center gap-3 mb-3">
-                              <div className="w-10 h-10 bg-secondary/10 rounded-lg flex items-center justify-center">
-                                <FaUser className="text-secondary" />
+                          <div className="bg-base-200 rounded-xl p-3 md:p-4">
+                            <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
+                              <div className="w-8 h-8 md:w-10 md:h-10 bg-secondary/10 rounded-lg flex items-center justify-center shrink-0">
+                                <FaUser className="text-secondary text-sm md:text-base" />
                               </div>
                               <div>
                                 <p className="text-xs text-neutral-medium font-body">
@@ -352,15 +352,15 @@ const MyBookings = () => {
                                 </p>
                               </div>
                             </div>
-                            <div className="space-y-2">
-                              <div className="flex items-center gap-2 text-sm">
-                                <FaUser className="text-neutral-medium" />
-                                <span className="font-body text-neutral">
+                            <div className="space-y-1 md:space-y-2">
+                              <div className="flex items-center gap-2 text-xs md:text-sm">
+                                <FaUser className="text-neutral-medium shrink-0" />
+                                <span className="font-body text-neutral truncate">
                                   {car.providerName}
                                 </span>
                               </div>
-                              <div className="flex items-center gap-2 text-sm">
-                                <FaEnvelope className="text-neutral-medium" />
+                              <div className="flex items-center gap-2 text-xs md:text-sm">
+                                <FaEnvelope className="text-neutral-medium shrink-0" />
                                 <span className="font-body text-neutral truncate">
                                   {car.providerEmail}
                                 </span>
@@ -369,9 +369,9 @@ const MyBookings = () => {
                           </div>
                         </div>
 
-                        <div className="flex items-center justify-between pt-4 border-t border-base-300">
-                          <div className="flex items-center gap-2 text-sm text-neutral-medium">
-                            <FaClock />
+                        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 pt-3 md:pt-4 border-t border-base-300">
+                          <div className="flex items-center gap-2 text-xs md:text-sm text-neutral-medium">
+                            <FaClock className="shrink-0" />
                             <span className="font-body">
                               Booked on{" "}
                               {new Date(booking.bookingDate).toLocaleDateString(
@@ -394,9 +394,9 @@ const MyBookings = () => {
                                 car.carName
                               )
                             }
-                            className="btn btn-error btn-sm text-white border-0"
+                            className="btn btn-error btn-sm text-white border-0 h-9 md:h-10 text-xs md:text-sm w-full md:w-auto"
                           >
-                            <FaTrash className="mr-2" />
+                            <FaTrash className="mr-1 md:mr-2" />
                             Cancel Booking
                           </motion.button>
                         </div>
