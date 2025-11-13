@@ -11,14 +11,14 @@ import {
   FaMapMarkerAlt,
 } from "react-icons/fa";
 import AuthContext from "../../contexts/AuthContext";
-import useAxios from "../../hooks/useAxios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/Loader";
 import UpdateCarModal from "./UpdateCarModal";
 
 const MyListings = () => {
   const { user } = use(AuthContext);
   const navigate = useNavigate();
-  const axios = useAxios();
+  const axios = useAxiosSecure();
   const [cars, setCars] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCar, setSelectedCar] = useState(null);

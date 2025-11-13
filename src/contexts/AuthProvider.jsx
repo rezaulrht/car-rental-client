@@ -15,7 +15,7 @@ import useAxios from "../hooks/useAxios";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const axios = useAxios();
+  const axios = useAxios(); // Keep useAxios here for public endpoints like user registration
 
   const googleProvider = new GoogleAuthProvider();
 

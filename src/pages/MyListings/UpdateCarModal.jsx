@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import useAxios from "../../hooks/useAxios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const UpdateCarModal = ({ car, isOpen, onClose, onUpdate }) => {
-  const axios = useAxios();
+  const axios = useAxiosSecure();
   const [loading, setLoading] = useState(false);
 
   const categories = ["Sedan", "SUV", "Hatchback", "Luxury", "Electric"];

@@ -1,12 +1,12 @@
 import React, { useState, use } from "react";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
-import useAxios from "../../hooks/useAxios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import AuthContext from "../../contexts/AuthContext";
 
 const CarBooking = ({ car, isOpen, onClose }) => {
   const navigate = useNavigate();
-  const axios = useAxios();
+  const axios = useAxiosSecure();
   const { user } = use(AuthContext);
 
   const [startDate, setStartDate] = useState("");

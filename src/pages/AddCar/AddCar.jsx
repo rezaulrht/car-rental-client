@@ -2,13 +2,13 @@ import React, { useEffect, use, useState } from "react";
 import { useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import AuthContext from "../../contexts/AuthContext";
-import useAxios from "../../hooks/useAxios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/Loader";
 
 const AddCar = () => {
   const { user } = use(AuthContext);
   const navigate = useNavigate();
-  const axios = useAxios();
+  const axios = useAxiosSecure();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

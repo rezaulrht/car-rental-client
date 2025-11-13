@@ -12,14 +12,14 @@ import {
   FaUser,
   FaClock,
 } from "react-icons/fa";
-import useAxios from "../../hooks/useAxios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import AuthContext from "../../contexts/AuthContext";
 import Loader from "../../components/Loader";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const MyBookings = () => {
-  const axios = useAxios();
+  const axios = useAxiosSecure();
   const { user } = use(AuthContext);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
