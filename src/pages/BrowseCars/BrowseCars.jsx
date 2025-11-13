@@ -13,6 +13,7 @@ const BrowseCars = () => {
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get("search") || ""
   );
+  const [initialLoad, setInitialLoad] = useState(true);
   const searchInputRef = useRef(null);
 
   const fetchCars = async (query = "") => {
@@ -25,7 +26,7 @@ const BrowseCars = () => {
       console.error("Error fetching cars:", error);
     } finally {
       setLoading(false);
-      
+
       if (searchInputRef.current) {
         searchInputRef.current.focus();
       }
@@ -37,8 +38,11 @@ const BrowseCars = () => {
     setSearchQuery(value);
   };
 
-  
   useEffect(() => {
+    if (initialLoad) {
+      return;
+    }
+
     const delayDebounce = setTimeout(() => {
       if (searchQuery.trim()) {
         setSearchParams({ search: searchQuery });
@@ -68,12 +72,9 @@ const BrowseCars = () => {
     } else {
       fetchCars();
     }
+    setInitialLoad(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  if (loading) {
-    return <Loader />;
-  }
 
   return (
     <div className="min-h-screen py-16 px-6">
@@ -95,7 +96,6 @@ const BrowseCars = () => {
               placeholder="Search for cars by name..."
               value={searchQuery}
               onChange={handleSearchChange}
-              autoFocus
               className="input input-bordered bg-base-100 border-base-300 w-full h-14 pl-12 pr-12 text-neutral placeholder:text-neutral-light font-body text-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
             <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-medium text-xl" />
@@ -127,42 +127,50 @@ const BrowseCars = () => {
           )}
         </div>
 
-        {cars.length > 0 && (
-          <div className="mb-8">
-            <h2 className="text-3xl font-heading font-bold text-neutral text-center mb-8">
-              Available <span className="text-primary">Cars</span>
-            </h2>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            {cars.length > 0 && (
+              <div className="mb-8">
+                <h2 className="text-3xl font-heading font-bold text-neutral text-center mb-8">
+                  Available <span className="text-primary">Cars</span>
+                </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {cars.map((car) => (
-                <CarsCard key={car._id} car={car} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {cars.length === 0 && (
-          <div className="text-center py-20">
-            <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-6xl">🚗</span>
-            </div>
-            <h3 className="text-2xl font-heading font-bold text-neutral mb-3">
-              {searchQuery ? "No Cars Found" : "No Cars Available Right Now"}
-            </h3>
-            <p className="text-base text-neutral-medium font-body">
-              {searchQuery
-                ? `No cars found matching "${searchQuery}". Try a different search term.`
-                : "Check back later for new listings from our trusted providers."}
-            </p>
-            {searchQuery && (
-              <button
-                onClick={handleClearSearch}
-                className="btn btn-primary mt-6"
-              >
-                Clear Search & View All Cars
-              </button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                  {cars.map((car) => (
+                    <CarsCard key={car._id} car={car} />
+                  ))}
+                </div>
+              </div>
             )}
-          </div>
+
+            {cars.length === 0 && (
+              <div className="text-center py-20">
+                <div className="w-32 h-32 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-6xl">🚗</span>
+                </div>
+                <h3 className="text-2xl font-heading font-bold text-neutral mb-3">
+                  {searchQuery
+                    ? "No Cars Found"
+                    : "No Cars Available Right Now"}
+                </h3>
+                <p className="text-base text-neutral-medium font-body">
+                  {searchQuery
+                    ? `No cars found matching "${searchQuery}". Try a different search term.`
+                    : "Check back later for new listings from our trusted providers."}
+                </p>
+                {searchQuery && (
+                  <button
+                    onClick={handleClearSearch}
+                    className="btn btn-primary mt-6"
+                  >
+                    Clear Search & View All Cars
+                  </button>
+                )}
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
