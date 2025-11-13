@@ -56,14 +56,14 @@ const TopRatedCars = () => {
   };
 
   return (
-    <section className="py-16 px-6 bg-white">
+    <section className="py-16 lg:py-20 px-6 lg:px-10 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-12 lg:mb-16"
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             {[...Array(5)].map((_, index) => (
@@ -78,7 +78,7 @@ const TopRatedCars = () => {
               </motion.div>
             ))}
           </div>
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-neutral mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral mb-4">
             Top Rated <span className="text-primary">Cars</span>
           </h2>
           <motion.div
@@ -88,7 +88,7 @@ const TopRatedCars = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="h-1 bg-linear-to-r from-primary to-secondary mx-auto rounded-full"
           ></motion.div>
-          <p className="text-lg text-neutral-medium font-body mt-4 max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-neutral-medium font-body mt-4 max-w-2xl mx-auto">
             Our most popular and highly-rated vehicles chosen by customers
           </p>
         </motion.div>

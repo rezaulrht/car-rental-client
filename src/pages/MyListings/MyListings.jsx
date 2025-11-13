@@ -84,37 +84,37 @@ const MyListings = () => {
   }
 
   return (
-    <div className="min-h-screen py-8 md:py-12 px-4 md:px-8">
+    <div className="min-h-screen py-8 md:py-12 lg:py-16 px-4 md:px-8 lg:px-10">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-6 md:mb-10">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div className="mb-6 md:mb-10 lg:mb-12">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 lg:gap-6">
             <div>
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-neutral mb-2">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-neutral mb-2">
                 My <span className="text-primary">Listings</span>
               </h1>
-              <p className="text-sm md:text-base lg:text-lg text-neutral-medium font-body">
+              <p className="text-sm md:text-base lg:text-lg xl:text-xl text-neutral-medium font-body">
                 Manage your car rental listings
               </p>
             </div>
             <button
               onClick={() => navigate("/add-car")}
-              className="btn btn-primary h-11 md:h-12 px-5 md:px-6 text-sm md:text-base font-body font-semibold text-white border-0 hover:scale-105 transition-all duration-300 w-full md:w-auto"
+              className="btn btn-primary h-11 md:h-12 lg:h-14 px-5 md:px-6 lg:px-8 text-sm md:text-base lg:text-lg font-body font-semibold text-white border-0 hover:scale-105 transition-all duration-300 w-full md:w-auto"
             >
               <FaPlus className="text-base md:text-lg" /> Add New Car
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mt-6 md:mt-8">
-            <div className="bg-base-100 rounded-xl p-4 md:p-6 border-2 border-base-300 shadow-lg">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                  <FaCar className="text-xl md:text-2xl text-primary" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 lg:gap-6 mt-6 md:mt-8">
+            <div className="bg-base-100 rounded-xl p-4 md:p-6 lg:p-8 border-2 border-base-300 shadow-lg">
+              <div className="flex items-center gap-3 lg:gap-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                  <FaCar className="text-xl md:text-2xl lg:text-3xl text-primary" />
                 </div>
                 <div>
-                  <p className="text-xl md:text-2xl font-heading font-bold text-neutral">
+                  <p className="text-xl md:text-2xl lg:text-3xl font-heading font-bold text-neutral">
                     {cars.length}
                   </p>
-                  <p className="text-xs md:text-sm text-neutral-medium font-body">
+                  <p className="text-xs md:text-sm lg:text-base text-neutral-medium font-body">
                     Total Listings
                   </p>
                 </div>

@@ -77,18 +77,18 @@ const BrowseCars = () => {
   }, []);
 
   return (
-    <div className="min-h-screen py-16 px-6">
+    <div className="min-h-screen py-16 lg:py-20 px-6 lg:px-10">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-heading font-bold text-neutral mb-4">
+        <div className="text-center mb-12 lg:mb-16">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral mb-4">
             Browse <span className="text-primary">Cars</span>
           </h1>
-          <p className="text-lg md:text-xl text-neutral-medium font-body max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl lg:text-2xl text-neutral-medium font-body max-w-2xl mx-auto">
             Explore available cars from trusted providers near you
           </p>
         </div>
 
-        <div className="bg-base-100 rounded-2xl shadow-xl border-2 border-base-300 p-6 mb-12">
+        <div className="bg-base-100 rounded-2xl shadow-xl border-2 border-base-300 p-6 lg:p-8 mb-12 lg:mb-16">
           <div className="relative">
             <input
               ref={searchInputRef}
@@ -96,15 +96,15 @@ const BrowseCars = () => {
               placeholder="Search for cars by name..."
               value={searchQuery}
               onChange={handleSearchChange}
-              className="input input-bordered bg-base-100 border-base-300 w-full h-14 pl-12 pr-12 text-neutral placeholder:text-neutral-light font-body text-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              className="input input-bordered bg-base-100 border-base-300 w-full h-14 lg:h-16 pl-12 lg:pl-14 pr-12 lg:pr-14 text-neutral placeholder:text-neutral-light font-body text-lg lg:text-xl focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
-            <FaSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-medium text-xl" />
+            <FaSearch className="absolute left-4 lg:left-5 top-1/2 -translate-y-1/2 text-neutral-medium text-xl lg:text-2xl" />
             {searchQuery && (
               <button
                 onClick={handleClearSearch}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-neutral-medium hover:text-error transition-colors"
+                className="absolute right-4 lg:right-5 top-1/2 -translate-y-1/2 text-neutral-medium hover:text-error transition-colors"
               >
-                <FaTimes className="text-xl" />
+                <FaTimes className="text-xl lg:text-2xl" />
               </button>
             )}
           </div>
@@ -133,11 +133,11 @@ const BrowseCars = () => {
           <>
             {cars.length > 0 && (
               <div className="mb-8">
-                <h2 className="text-3xl font-heading font-bold text-neutral text-center mb-8">
+                <h2 className="text-3xl lg:text-4xl font-heading font-bold text-neutral text-center mb-8 lg:mb-12">
                   Available <span className="text-primary">Cars</span>
                 </h2>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8">
                   {cars.map((car) => (
                     <CarsCard key={car._id} car={car} />
                   ))}

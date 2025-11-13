@@ -67,14 +67,14 @@ const WhyRentWithUs = () => {
   };
 
   return (
-    <section className="py-16 px-6 bg-linear-to-br from-base-100 to-base-200">
+    <section className="py-16 lg:py-20 px-6 lg:px-10 bg-linear-to-br from-base-100 to-base-200">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-12 lg:mb-16"
         >
           <motion.img
             src="/logo.png"
@@ -83,12 +83,12 @@ const WhyRentWithUs = () => {
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
-            className="w-20 h-20 object-contain mx-auto mb-4"
+            className="w-20 h-20 lg:w-24 lg:h-24 object-contain mx-auto mb-4"
           />
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-neutral mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral mb-4">
             Why Rent <span className="text-primary">With Us</span>
           </h2>
-          <p className="text-lg text-neutral-medium font-body max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-neutral-medium font-body max-w-2xl mx-auto">
             Experience the difference with our premium service and commitment to
             excellence
           </p>
@@ -99,7 +99,7 @@ const WhyRentWithUs = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
         >
           {features.map((feature) => (
             <motion.div
@@ -110,21 +110,23 @@ const WhyRentWithUs = () => {
                 boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                 transition: { duration: 0.3 },
               }}
-              className="bg-white rounded-2xl p-6 border-2 border-base-300 hover:border-primary/30 transition-all duration-300"
+              className="bg-white rounded-2xl p-6 lg:p-8 border-2 border-base-300 hover:border-primary/30 transition-all duration-300"
             >
               <motion.div
                 whileHover={{ rotate: 360, scale: 1.1 }}
                 transition={{ duration: 0.6 }}
-                className={`w-16 h-16 ${feature.bgColor} rounded-2xl flex items-center justify-center mb-4`}
+                className={`w-16 h-16 lg:w-20 lg:h-20 ${feature.bgColor} rounded-2xl flex items-center justify-center mb-4`}
               >
-                <feature.icon className={`text-3xl ${feature.color}`} />
+                <feature.icon
+                  className={`text-3xl lg:text-4xl ${feature.color}`}
+                />
               </motion.div>
 
-              <h3 className="text-xl font-heading font-bold text-neutral mb-3">
+              <h3 className="text-xl lg:text-2xl font-heading font-bold text-neutral mb-3">
                 {feature.title}
               </h3>
 
-              <p className="text-base text-neutral-medium font-body leading-relaxed">
+              <p className="text-base lg:text-lg text-neutral-medium font-body leading-relaxed">
                 {feature.description}
               </p>
             </motion.div>

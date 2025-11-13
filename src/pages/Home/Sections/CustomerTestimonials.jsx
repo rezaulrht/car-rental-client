@@ -55,14 +55,14 @@ const CustomerTestimonials = () => {
   };
 
   return (
-    <section className="py-16 px-6 bg-linear-to-br from-base-100 via-primary/5 to-base-100">
+    <section className="py-16 lg:py-20 px-6 lg:px-10 bg-linear-to-br from-base-100 via-primary/5 to-base-100">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-12 lg:mb-16"
         >
           <motion.img
             src="/logo.png"
@@ -71,12 +71,12 @@ const CustomerTestimonials = () => {
             whileInView={{ scale: 1, rotate: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
-            className="w-20 h-20 object-contain mx-auto mb-4"
+            className="w-20 h-20 lg:w-24 lg:h-24 object-contain mx-auto mb-4"
           />
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-neutral mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral mb-4">
             Customer <span className="text-primary">Testimonials</span>
           </h2>
-          <p className="text-lg text-neutral-medium font-body max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-neutral-medium font-body max-w-2xl mx-auto">
             Hear what our satisfied customers have to say about their experience
           </p>
         </motion.div>
@@ -86,7 +86,7 @@ const CustomerTestimonials = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
         >
           {testimonials.map((testimonial) => (
             <motion.div
@@ -96,7 +96,7 @@ const CustomerTestimonials = () => {
                 y: -10,
                 boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
               }}
-              className="bg-white rounded-2xl p-8 border-2 border-base-300 relative overflow-hidden"
+              className="bg-white rounded-2xl p-8 lg:p-10 border-2 border-base-300 relative overflow-hidden"
             >
               <div className="absolute top-4 right-4 opacity-5">
                 <FaQuoteLeft className="text-8xl text-primary" />

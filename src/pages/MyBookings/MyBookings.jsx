@@ -143,21 +143,21 @@ const MyBookings = () => {
   }
 
   return (
-    <div className="min-h-screen py-8 md:py-12 px-4 md:px-6">
+    <div className="min-h-screen py-8 md:py-12 lg:py-16 px-4 md:px-6 lg:px-10">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 md:mb-12"
+          className="text-center mb-8 md:mb-12 lg:mb-16"
         >
-          <div className="flex items-center justify-center gap-2 md:gap-3 mb-3 md:mb-4">
-            <FaCalendarAlt className="text-3xl md:text-4xl text-primary" />
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral">
+          <div className="flex items-center justify-center gap-2 md:gap-3 lg:gap-4 mb-3 md:mb-4">
+            <FaCalendarAlt className="text-3xl md:text-4xl lg:text-5xl text-primary" />
+            <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-neutral">
               My <span className="text-primary">Bookings</span>
             </h1>
           </div>
-          <p className="text-sm md:text-base lg:text-lg text-neutral-medium font-body max-w-2xl mx-auto px-4">
+          <p className="text-sm md:text-base lg:text-lg xl:text-xl text-neutral-medium font-body max-w-2xl mx-auto px-4">
             Manage and track all your car rental bookings in one place
           </p>
         </motion.div>
@@ -167,17 +167,17 @@ const MyBookings = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="bg-base-100 rounded-2xl border-2 border-base-300 p-8 md:p-12 text-center"
+            className="bg-base-100 rounded-2xl border-2 border-base-300 p-8 md:p-12 lg:p-16 text-center"
           >
             <div className="flex justify-center mb-4 md:mb-6">
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-primary/10 rounded-full flex items-center justify-center">
-                <FaCalendarAlt className="text-4xl md:text-5xl text-primary" />
+              <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-primary/10 rounded-full flex items-center justify-center">
+                <FaCalendarAlt className="text-4xl md:text-5xl lg:text-6xl text-primary" />
               </div>
             </div>
-            <h2 className="text-xl md:text-2xl font-heading font-bold text-neutral mb-2 md:mb-3">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-heading font-bold text-neutral mb-2 md:mb-3">
               No Bookings Yet
             </h2>
-            <p className="text-sm md:text-base text-neutral-medium font-body mb-4 md:mb-6 max-w-md mx-auto">
+            <p className="text-sm md:text-base lg:text-lg text-neutral-medium font-body mb-4 md:mb-6 max-w-md mx-auto">
               You haven't made any car bookings yet. Browse our collection and
               find your perfect ride!
             </p>
@@ -185,7 +185,7 @@ const MyBookings = () => {
               href="/browse"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn btn-primary text-white border-0 px-6 md:px-8 h-11 md:h-12 text-sm md:text-base w-full md:w-auto"
+              className="btn btn-primary text-white border-0 px-6 md:px-8 lg:px-10 h-11 md:h-12 lg:h-14 text-sm md:text-base lg:text-lg w-full md:w-auto"
             >
               Browse Cars
             </motion.a>

@@ -56,16 +56,16 @@ const FeaturedCars = () => {
   };
 
   return (
-    <section className="py-16 px-6 bg-base-100">
+    <section className="py-16 lg:py-20 px-6 lg:px-10 bg-base-100">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-12 lg:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold text-neutral mb-4">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral mb-4">
             Featured <span className="text-primary">Cars</span>
           </h2>
           <motion.div
@@ -75,7 +75,7 @@ const FeaturedCars = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="h-1 bg-primary mx-auto rounded-full"
           ></motion.div>
-          <p className="text-lg text-neutral-medium font-body mt-4 max-w-2xl mx-auto">
+          <p className="text-lg lg:text-xl text-neutral-medium font-body mt-4 max-w-2xl mx-auto">
             Discover our handpicked selection of premium vehicles
           </p>
         </motion.div>

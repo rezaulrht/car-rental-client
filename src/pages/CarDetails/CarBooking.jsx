@@ -87,20 +87,20 @@ const CarBooking = ({ car, isOpen, onClose }) => {
 
   return (
     <dialog open className="modal modal-open">
-      <div className="modal-box max-w-md bg-base-100 border-2 border-base-300 shadow-2xl">
-        <div className="bg-primary px-6 py-4 -mx-6 -mt-6 mb-6">
-          <h3 className="font-heading font-bold text-xl text-white">
+      <div className="modal-box max-w-md lg:max-w-lg bg-base-100 border-2 border-base-300 shadow-2xl">
+        <div className="bg-primary px-6 py-4 lg:px-8 lg:py-6 -mx-6 -mt-6 mb-6">
+          <h3 className="font-heading font-bold text-xl lg:text-2xl text-white">
             Book {car.carName}
           </h3>
-          <p className="text-white/90 font-body text-sm mt-1">
+          <p className="text-white/90 font-body text-sm lg:text-base mt-1">
             Select your rental dates
           </p>
         </div>
 
-        <form onSubmit={handleBooking} className="space-y-6">
+        <form onSubmit={handleBooking} className="space-y-6 lg:space-y-8">
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-neutral font-body font-medium">
+              <span className="label-text text-neutral font-body font-medium text-sm lg:text-base">
                 Start Date <span className="text-error">*</span>
               </span>
             </label>
@@ -110,13 +110,13 @@ const CarBooking = ({ car, isOpen, onClose }) => {
               onChange={(e) => setStartDate(e.target.value)}
               min={new Date().toISOString().split("T")[0]}
               required
-              className="input input-bordered bg-base-100 border-base-300 w-full h-12 text-neutral font-body focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              className="input input-bordered bg-base-100 border-base-300 w-full h-12 lg:h-14 text-neutral font-body text-base lg:text-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
           </div>
 
           <div className="form-control">
             <label className="label">
-              <span className="label-text text-neutral font-body font-medium">
+              <span className="label-text text-neutral font-body font-medium text-sm lg:text-base">
                 End Date <span className="text-error">*</span>
               </span>
             </label>
@@ -129,23 +129,23 @@ const CarBooking = ({ car, isOpen, onClose }) => {
                 new Date(Date.now() + 86400000).toISOString().split("T")[0]
               }
               required
-              className="input input-bordered bg-base-100 border-base-300 w-full h-12 text-neutral font-body focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+              className="input input-bordered bg-base-100 border-base-300 w-full h-12 lg:h-14 text-neutral font-body text-base lg:text-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
             />
           </div>
 
           {startDate && endDate && calculateBookingDetails().totalPrice > 0 && (
-            <div className="bg-base-200 rounded-xl p-4 space-y-2">
-              <div className="flex justify-between text-neutral-medium font-body">
+            <div className="bg-base-200 rounded-xl p-4 lg:p-6 space-y-2">
+              <div className="flex justify-between text-neutral-medium font-body text-sm lg:text-base">
                 <span>Daily Rate:</span>
                 <span>৳{Number(car.rentPrice).toLocaleString()}</span>
               </div>
-              <div className="flex justify-between text-neutral-medium font-body">
+              <div className="flex justify-between text-neutral-medium font-body text-sm lg:text-base">
                 <span>Number of Days:</span>
                 <span>{calculateBookingDetails().days}</span>
               </div>
               <div className="border-t border-base-300 pt-2 mt-2">
                 <div className="flex justify-between items-center">
-                  <span className="font-body font-semibold text-neutral">
+                  <span className="font-body font-semibold text-neutral text-base lg:text-lg">
                     Total Price:
                   </span>
                   <span className="text-2xl font-heading font-bold text-primary">

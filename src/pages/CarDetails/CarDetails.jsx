@@ -61,15 +61,15 @@ const CarDetails = () => {
   }
 
   return (
-    <div className="min-h-screen py-8 md:py-12 px-4 md:px-8 bg-base-100">
+    <div className="min-h-screen py-8 md:py-12 lg:py-16 px-4 md:px-8 lg:px-10 bg-base-100">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-4 md:mb-6"
+          className="mb-4 md:mb-6 lg:mb-8"
         >
-          <div className="flex items-center gap-2 text-xs md:text-sm font-body">
+          <div className="flex items-center gap-2 text-xs md:text-sm lg:text-base font-body">
             <Link
               to="/"
               className="text-neutral-medium hover:text-primary transition-colors"
@@ -90,23 +90,23 @@ const CarDetails = () => {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-2 space-y-4 md:space-y-6"
+            className="lg:col-span-2 space-y-4 md:space-y-6 lg:space-y-8"
           >
             <div className="bg-base-100 rounded-2xl border-2 border-base-300 shadow-xl overflow-hidden">
-              <div className="relative h-56 md:h-96 overflow-hidden bg-base-200">
+              <div className="relative h-56 md:h-96 lg:h-[500px] overflow-hidden bg-base-200">
                 <img
                   src={car.imageURL}
                   alt={car.carName}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute top-3 md:top-4 right-3 md:right-4">
+                <div className="absolute top-3 md:top-4 lg:top-5 right-3 md:right-4 lg:right-5">
                   <span
-                    className={`badge badge-md md:badge-lg border-0 font-body font-semibold shadow-lg ${
+                    className={`badge badge-md md:badge-lg lg:badge-xl border-0 font-body font-semibold shadow-lg ${
                       car.status === "Available"
                         ? "bg-accent text-white"
                         : "bg-error text-white"
@@ -115,8 +115,8 @@ const CarDetails = () => {
                     {car.status}
                   </span>
                 </div>
-                <div className="absolute top-3 md:top-4 left-3 md:left-4">
-                  <span className="badge badge-md md:badge-lg bg-base-100 text-neutral border-0 font-body font-medium shadow-lg">
+                <div className="absolute top-3 md:top-4 lg:top-5 left-3 md:left-4 lg:left-5">
+                  <span className="badge badge-md md:badge-lg lg:badge-xl bg-base-100 text-neutral border-0 font-body font-medium shadow-lg">
                     {car.category}
                   </span>
                 </div>
@@ -124,14 +124,14 @@ const CarDetails = () => {
             </div>
 
             <div className="bg-base-100 rounded-2xl border-2 border-base-300 shadow-xl p-4 md:p-6 lg:p-8">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-neutral mb-4">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-heading font-bold text-neutral mb-4">
                 {car.carName}
               </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-4 md:mb-6">
-                <div className="flex items-center gap-3 p-3 md:p-4 bg-base-200 rounded-xl">
-                  <div className="w-10 h-10 md:w-12 md:h-12 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
-                    <FaUser className="text-lg md:text-xl text-primary" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 lg:gap-5 mb-4 md:mb-6 lg:mb-8">
+                <div className="flex items-center gap-3 p-3 md:p-4 lg:p-5 bg-base-200 rounded-xl">
+                  <div className="w-10 h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 bg-primary/10 rounded-full flex items-center justify-center shrink-0">
+                    <FaUser className="text-lg md:text-xl lg:text-2xl text-primary" />
                   </div>
                   <div className="min-w-0">
                     <p className="text-xs md:text-sm text-neutral-medium font-body">

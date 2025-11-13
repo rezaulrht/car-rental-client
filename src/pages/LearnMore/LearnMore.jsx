@@ -62,7 +62,7 @@ const LearnMore = () => {
 
   return (
     <div className="min-h-screen bg-base-100">
-      <section className="relative bg-linear-to-br from-primary via-primary-dark to-info text-white py-20 px-6 overflow-hidden">
+      <section className="relative bg-linear-to-br from-primary via-primary-dark to-info text-white py-20 lg:py-24 px-6 lg:px-10 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <svg width="100%" height="100%">
             <pattern
@@ -84,12 +84,12 @@ const LearnMore = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ duration: 0.5, type: "spring" }}
-            className="inline-flex items-center justify-center mb-6"
+            className="inline-flex items-center justify-center mb-6 lg:mb-8"
           >
             <img
               src="/logo.png"
               alt="RentWheels Logo"
-              className="w-32 h-32 bg-white object-contain drop-shadow-2xl"
+              className="w-32 h-32 lg:w-40 lg:h-40 bg-white object-contain drop-shadow-2xl"
             />
           </motion.div>
 
@@ -97,7 +97,7 @@ const LearnMore = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-heading font-bold mb-6"
+            className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold mb-6"
           >
             About <span className="text-secondary">RentWheels</span>
           </motion.h1>
@@ -106,7 +106,7 @@ const LearnMore = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl md:text-2xl text-white/90 font-body max-w-3xl mx-auto"
+            className="text-xl md:text-2xl lg:text-3xl text-white/90 font-body max-w-3xl mx-auto"
           >
             Your trusted partner for premium car rentals. Experience seamless
             booking, top-quality vehicles, and exceptional service.
@@ -114,24 +114,24 @@ const LearnMore = () => {
         </div>
       </section>
 
-      <section className="py-16 px-6">
+      <section className="py-16 lg:py-20 px-6 lg:px-10">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center mb-12 lg:mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-neutral mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral mb-4">
               Why Choose <span className="text-primary">Us</span>
             </h2>
-            <p className="text-lg text-neutral-medium font-body max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl text-neutral-medium font-body max-w-2xl mx-auto">
               We provide everything you need for a perfect car rental experience
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
             {features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -140,17 +140,19 @@ const LearnMore = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
-                className="bg-white rounded-2xl p-8 border-2 border-base-300 hover:border-primary/30 transition-all"
+                className="bg-white rounded-2xl p-8 lg:p-10 border-2 border-base-300 hover:border-primary/30 transition-all"
               >
                 <div
-                  className={`w-16 h-16 ${feature.bgColor} rounded-2xl flex items-center justify-center mb-4`}
+                  className={`w-16 h-16 lg:w-20 lg:h-20 ${feature.bgColor} rounded-2xl flex items-center justify-center mb-4`}
                 >
-                  <feature.icon className={`text-3xl ${feature.color}`} />
+                  <feature.icon
+                    className={`text-3xl lg:text-4xl ${feature.color}`}
+                  />
                 </div>
-                <h3 className="text-2xl font-heading font-bold text-neutral mb-3">
+                <h3 className="text-2xl lg:text-3xl font-heading font-bold text-neutral mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-base text-neutral-medium font-body leading-relaxed">
+                <p className="text-base lg:text-lg text-neutral-medium font-body leading-relaxed">
                   {feature.description}
                 </p>
               </motion.div>
@@ -159,19 +161,19 @@ const LearnMore = () => {
         </div>
       </section>
 
-      <section className="py-16 px-6 bg-base-200">
+      <section className="py-16 lg:py-20 px-6 lg:px-10 bg-base-200">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-12"
+            className="text-center mb-12 lg:mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-neutral mb-4">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral mb-4">
               What You <span className="text-primary">Get</span>
             </h2>
-            <p className="text-lg text-neutral-medium font-body max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl text-neutral-medium font-body max-w-2xl mx-auto">
               Comprehensive benefits that make your rental experience
               exceptional
             </p>

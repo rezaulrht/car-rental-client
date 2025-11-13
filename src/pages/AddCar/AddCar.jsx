@@ -54,15 +54,15 @@ const AddCar = () => {
   }
 
   return (
-    <div className="min-h-screen py-12 px-4 md:px-8">
+    <div className="min-h-screen py-12 lg:py-16 px-4 md:px-8 lg:px-10">
       <div className="max-w-5xl mx-auto">
-        <div className="text-center mb-10">
+        <div className="text-center mb-10 lg:mb-12">
           <div className="inline-flex items-center justify-center gap-3 mb-4 bg-primary/10 px-6 py-3 rounded-full">
-            <h1 className="text-3xl md:text-4xl font-heading font-bold text-neutral">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-neutral">
               List Your <span className="text-primary">Vehicle</span>
             </h1>
           </div>
-          <p className="text-base md:text-lg text-neutral-medium font-body max-w-2xl mx-auto">
+          <p className="text-base md:text-lg lg:text-xl text-neutral-medium font-body max-w-2xl mx-auto">
             Join our marketplace and start earning by renting out your car to
             trusted drivers
           </p>
@@ -77,20 +77,23 @@ const AddCar = () => {
         </div>
 
         <div className="bg-base-100 rounded-2xl shadow-2xl border border-base-300 overflow-hidden">
-          <div className="bg-linear-to-r from-primary to-primary/80 px-6 md:px-8 py-6">
-            <h2 className="text-xl md:text-2xl font-heading font-bold text-white flex items-center gap-3">
+          <div className="bg-linear-to-r from-primary to-primary/80 px-6 md:px-8 lg:px-10 py-6 lg:py-8">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-heading font-bold text-white flex items-center gap-3">
               Car Information
             </h2>
-            <p className="text-white/90 font-body text-sm mt-1">
+            <p className="text-white/90 font-body text-sm lg:text-base mt-1">
               Fill in the details to list your car
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-6 md:p-8 space-y-8">
-            <div className="space-y-6">
+          <form
+            onSubmit={handleSubmit}
+            className="p-6 md:p-8 lg:p-10 space-y-8 lg:space-y-10"
+          >
+            <div className="space-y-6 lg:space-y-8">
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-1 h-6 bg-primary rounded-full"></div>
-                <h3 className="text-lg font-heading font-semibold text-neutral">
+                <div className="w-1 h-6 lg:h-8 bg-primary rounded-full"></div>
+                <h3 className="text-lg lg:text-xl font-heading font-semibold text-neutral">
                   Basic Details
                 </h3>
               </div>

@@ -87,46 +87,46 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 flex items-center justify-center py-12 px-4 md:px-8">
+    <div className="min-h-screen bg-base-200 flex items-center justify-center py-12 lg:py-16 px-4 md:px-8 lg:px-10">
       <div className="max-w-md w-full">
-        <div className="bg-base-100 rounded-lg md:rounded-xl shadow-lg p-6 md:p-8 border border-base-300">
-          <div className="text-center mb-6 md:mb-8">
+        <div className="bg-base-100 rounded-lg md:rounded-xl lg:rounded-2xl shadow-lg p-6 md:p-8 lg:p-10 border border-base-300">
+          <div className="text-center mb-6 md:mb-8 lg:mb-10">
             <div className="flex items-center justify-center gap-2 mb-3">
               <img
                 src="/logo.png"
                 alt="RentWheels Logo"
-                className="w-12 h-12 md:w-14 md:h-14"
+                className="w-12 h-12 md:w-14 md:h-14 lg:w-16 lg:h-16"
               />
-              <h1 className="text-2xl md:text-3xl font-heading font-bold text-neutral">
+              <h1 className="text-2xl md:text-3xl lg:text-4xl font-heading font-bold text-neutral">
                 Rent<span className="text-primary">Wheels</span>
               </h1>
             </div>
-            <h2 className="text-xl md:text-2xl font-heading font-semibold text-neutral mb-2">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-heading font-semibold text-neutral mb-2">
               Create Account
             </h2>
-            <p className="text-sm text-neutral-medium font-body">
+            <p className="text-sm lg:text-base text-neutral-medium font-body">
               Sign up to start renting your dream car
             </p>
           </div>
 
-          <form onSubmit={handleRegister} className="space-y-4">
+          <form onSubmit={handleRegister} className="space-y-4 lg:space-y-5">
             <div>
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-neutral mb-2 font-body"
+                className="block text-sm lg:text-base font-medium text-neutral mb-2 font-body"
               >
                 Full Name
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <HiUser className="h-5 w-5 text-neutral-light" />
+                  <HiUser className="h-5 w-5 lg:h-6 lg:w-6 text-neutral-light" />
                 </div>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   placeholder="Enter your full name"
-                  className="input input-bordered bg-base-100 border-base-300 w-full pl-10 h-12 md:h-14 text-neutral placeholder:text-neutral-light font-body focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  className="input input-bordered bg-base-100 border-base-300 w-full pl-10 lg:pl-12 h-12 md:h-14 lg:h-16 text-neutral placeholder:text-neutral-light font-body text-base lg:text-lg focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
                 />
               </div>
             </div>

@@ -55,7 +55,7 @@ const HeroBanner = () => {
   };
 
   return (
-    <section className="relative w-full h-[600px] md:h-[700px] overflow-hidden bg-neutral">
+    <section className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden bg-neutral">
       <div className="absolute inset-0 bg-linear-to-br from-neutral via-neutral-focus to-black"></div>
 
       <AnimatePresence mode="wait">
@@ -81,14 +81,14 @@ const HeroBanner = () => {
             <div className="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-transparent"></div>
           </motion.div>
 
-          <div className="relative h-full max-w-7xl mx-auto px-6 flex items-center">
-            <div className="max-w-2xl text-white">
+          <div className="relative h-full max-w-7xl mx-auto px-6 lg:px-10 flex items-center">
+            <div className="max-w-2xl lg:max-w-3xl text-white">
               <motion.h1
                 key={`title-${currentSlide}`}
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-5xl md:text-7xl font-heading font-bold mb-4 min-h-[120px] md:min-h-40"
+                className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-4 min-h-[120px] md:min-h-40 lg:min-h-48"
               >
                 <Typewriter
                   words={[slides[currentSlide].title]}
@@ -105,7 +105,7 @@ const HeroBanner = () => {
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="text-3xl md:text-5xl font-heading font-semibold text-primary mb-6"
+                className="text-3xl md:text-5xl lg:text-6xl font-heading font-semibold text-primary mb-6"
               >
                 {slides[currentSlide].subtitle}
               </motion.h2>
@@ -114,7 +114,7 @@ const HeroBanner = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-lg md:text-xl font-body mb-8 text-gray-200"
+                className="text-lg md:text-xl lg:text-2xl font-body mb-8 text-gray-200"
               >
                 {slides[currentSlide].description}
               </motion.p>
@@ -132,7 +132,7 @@ const HeroBanner = () => {
                       boxShadow: "0 0 20px rgba(37, 99, 235, 0.5)",
                     }}
                     whileTap={{ scale: 0.95 }}
-                    className="btn btn-primary btn-lg text-white border-0 px-8"
+                    className="btn btn-primary btn-lg lg:btn-xl text-white border-0 px-8 lg:px-10"
                   >
                     {slides[currentSlide].buttonText}
                   </motion.button>
@@ -141,7 +141,7 @@ const HeroBanner = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="btn btn-outline btn-lg text-white border-white hover:bg-white hover:text-primary px-8"
+                    className="btn btn-outline btn-lg lg:btn-xl text-white border-white hover:bg-white hover:text-primary px-8 lg:px-10"
                   >
                     Learn More
                   </motion.button>
@@ -154,15 +154,15 @@ const HeroBanner = () => {
 
       <button
         onClick={prevSlide}
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 z-10"
+        className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 lg:p-4 rounded-full transition-all duration-300 z-10"
       >
-        <FaChevronLeft size={24} />
+        <FaChevronLeft size={24} className="lg:w-7 lg:h-7" />
       </button>
       <button
         onClick={nextSlide}
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 rounded-full transition-all duration-300 z-10"
+        className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/40 backdrop-blur-sm text-white p-3 lg:p-4 rounded-full transition-all duration-300 z-10"
       >
-        <FaChevronRight size={24} />
+        <FaChevronRight size={24} className="lg:w-7 lg:h-7" />
       </button>
 
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-3 z-10">

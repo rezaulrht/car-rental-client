@@ -24,7 +24,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="relative py-20 px-6 overflow-hidden">
+    <section className="relative py-20 lg:py-24 px-6 lg:px-10 overflow-hidden">
       <div className="absolute inset-0 bg-linear-to-br from-primary via-primary-dark to-info"></div>
 
       <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
@@ -52,9 +52,9 @@ const Newsletter = () => {
           whileInView={{ scale: 1, rotate: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, type: "spring", bounce: 0.5 }}
-          className="inline-flex items-center justify-center w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full mb-6"
+          className="inline-flex items-center justify-center w-20 h-20 lg:w-24 lg:h-24 bg-white/20 backdrop-blur-sm rounded-full mb-6"
         >
-          <FaEnvelope className="text-4xl text-white" />
+          <FaEnvelope className="text-4xl lg:text-5xl text-white" />
         </motion.div>
 
         <motion.h2
@@ -62,7 +62,7 @@ const Newsletter = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-3xl md:text-5xl font-heading font-bold text-white mb-4"
+          className="text-3xl md:text-5xl lg:text-6xl font-heading font-bold text-white mb-4"
         >
           Stay in the Loop!
         </motion.h2>
@@ -72,7 +72,7 @@ const Newsletter = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-lg md:text-xl text-white/90 font-body mb-8"
+          className="text-lg md:text-xl lg:text-2xl text-white/90 font-body mb-8"
         >
           Get exclusive deals, special offers, and the latest updates delivered
           straight to your inbox.
@@ -84,16 +84,16 @@ const Newsletter = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto"
+          className="flex flex-col sm:flex-row gap-3 lg:gap-4 max-w-lg lg:max-w-2xl mx-auto"
         >
           <div className="relative flex-1">
-            <FaEnvelope className="absolute left-5 top-1/2 -translate-y-1/2 text-neutral-medium text-lg" />
+            <FaEnvelope className="absolute left-5 top-1/2 -translate-y-1/2 text-neutral-medium text-lg lg:text-xl" />
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Your email address"
-              className="w-full pl-14 pr-6 py-4 rounded-full text-neutral font-body text-base bg-white focus:outline-none focus:ring-4 focus:ring-secondary/50 shadow-lg transition-all"
+              className="w-full pl-14 lg:pl-16 pr-6 py-4 lg:py-5 rounded-full text-neutral font-body text-base lg:text-lg bg-white focus:outline-none focus:ring-4 focus:ring-secondary/50 shadow-lg transition-all"
             />
           </div>
           <motion.button
@@ -103,7 +103,7 @@ const Newsletter = () => {
               boxShadow: "0 8px 30px rgba(245, 158, 11, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
-            className="btn btn-secondary btn-lg rounded-full px-8 text-white border-0 font-body font-semibold shadow-lg hover:shadow-xl transition-all"
+            className="btn btn-secondary btn-lg lg:btn-xl rounded-full px-8 lg:px-10 text-white border-0 font-body font-semibold shadow-lg hover:shadow-xl transition-all"
           >
             <FaPaperPlane className="mr-2" />
             Subscribe
