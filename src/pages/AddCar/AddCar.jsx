@@ -249,7 +249,7 @@ const AddCar = () => {
               </div>
             </div>
 
-            <div className="bg-linear-to-br from-base-200 to-base-300 rounded-xl p-6 border-2 border-base-300 shadow-inner">
+            <div className="bg-linear-to-br from-base-100 to-base-200 rounded-xl p-6 border-2 border-base-300 shadow-inner">
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-1 h-6 bg-neutral rounded-full"></div>
                 <h3 className="text-lg font-heading font-semibold text-neutral">

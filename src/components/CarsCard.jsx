@@ -6,7 +6,7 @@ import { Tooltip } from "react-tooltip";
 const CarsCard = ({ car }) => {
   return (
     <>
-      <div className="bg-base-100 rounded-2xl border-2 border-base-300 shadow-xl overflow-hidden hover:shadow-2xl hover:border-primary/30 hover:scale-105 transition-all duration-300 group h-full flex flex-col">
+      <div className="bg-base-100 rounded-2xl border-2 border-base-300 shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:border-primary/30 hover:scale-105 transition-all duration-300 group h-full flex flex-col">
         <div className="relative h-48 lg:h-56 overflow-hidden bg-base-200">
           <img
             src={car?.imageURL || "https://via.placeholder.com/400x300"}
@@ -15,11 +15,10 @@ const CarsCard = ({ car }) => {
           />
           <div className="absolute top-3 lg:top-4 right-3 lg:right-4">
             <span
-              className={`badge badge-lg lg:badge-xl border-0 font-body font-semibold shadow-lg ${
-                car?.status === "Available"
-                  ? "bg-accent text-white"
-                  : "bg-error text-white"
-              }`}
+              className={`badge badge-lg lg:badge-xl border-0 font-body font-semibold shadow-lg ${car?.status === "Available"
+                ? "bg-accent text-white"
+                : "bg-error text-white"
+                }`}
               data-tooltip-id={`status-tooltip-${car?._id}`}
               data-tooltip-content={
                 car?.status === "Available"
@@ -66,11 +65,10 @@ const CarsCard = ({ car }) => {
               <div
                 className="text-right"
                 data-tooltip-id={`price-tooltip-${car?._id}`}
-                data-tooltip-content={`Book now for just ৳${
-                  car?.rentPrice
-                    ? Number(car.rentPrice).toLocaleString()
-                    : "5,000"
-                } per day!`}
+                data-tooltip-content={`Book now for just ৳${car?.rentPrice
+                  ? Number(car.rentPrice).toLocaleString()
+                  : "5,000"
+                  } per day!`}
                 data-tooltip-place="bottom"
               >
                 <p className="text-2xl lg:text-3xl font-heading font-bold text-primary">

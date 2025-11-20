@@ -110,7 +110,7 @@ const WhyRentWithUs = () => {
                 boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
                 transition: { duration: 0.3 },
               }}
-              className="bg-base-100 rounded-2xl p-6 lg:p-8 border-2 border-base-300 hover:border-primary/30 transition-all duration-300"
+              className="bg-base-100 rounded-2xl p-6 lg:p-8 border-2 border-base-300 shadow-2xl hover:shadow-[0_20px_50px_rgba(0,0,0,0.5)] hover:border-primary/30 transition-all duration-300"
             >
               <motion.div
                 whileHover={{ rotate: 360, scale: 1.1 }}

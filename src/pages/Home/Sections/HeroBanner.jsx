@@ -55,8 +55,8 @@ const HeroBanner = () => {
   };
 
   return (
-    <section className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden bg-neutral">
-      <div className="absolute inset-0 bg-linear-to-br from-neutral via-neutral-focus to-black"></div>
+    <section className="relative w-full h-[600px] md:h-[700px] lg:h-[800px] overflow-hidden bg-base-100">
+      <div className="absolute inset-0 bg-linear-to-br from-base-100 via-base-200 to-base-300"></div>
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -170,11 +170,10 @@ const HeroBanner = () => {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all duration-300 ${
-              currentSlide === index
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index
                 ? "bg-primary w-12"
                 : "bg-white/50 hover:bg-white/80"
-            }`}
+              }`}
           />
         ))}
       </div>
