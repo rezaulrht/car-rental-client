@@ -4,6 +4,7 @@ import { HiMenu } from "react-icons/hi";
 import AuthContext from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { signOutUser, user, loading } = use(AuthContext);
@@ -38,8 +39,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-              isActive ? "text-primary font-semibold" : ""
+            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
             }`
           }
         >
@@ -50,8 +50,7 @@ const Navbar = () => {
         <NavLink
           to="/browse"
           className={({ isActive }) =>
-            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-              isActive ? "text-primary font-semibold" : ""
+            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
             }`
           }
         >
@@ -65,8 +64,7 @@ const Navbar = () => {
             <NavLink
               to="/add-car"
               className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-                  isActive ? "text-primary font-semibold" : ""
+                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
                 }`
               }
             >
@@ -77,8 +75,7 @@ const Navbar = () => {
             <NavLink
               to="/my-listings"
               className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-                  isActive ? "text-primary font-semibold" : ""
+                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
                 }`
               }
             >
@@ -89,8 +86,7 @@ const Navbar = () => {
             <NavLink
               to="/my-bookings"
               className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-                  isActive ? "text-primary font-semibold" : ""
+                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
                 }`
               }
             >
@@ -167,6 +163,7 @@ const Navbar = () => {
         </div>
 
         <div className="navbar-end">
+          <ThemeToggle />
           {loading ? (
             <div className="flex items-center gap-2">
               <span className="loading loading-spinner loading-sm md:loading-md text-primary"></span>
@@ -202,8 +199,7 @@ const Navbar = () => {
                   <NavLink
                     to="/add-car"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
-                        isActive ? "text-primary font-semibold" : ""
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""
                       }`
                     }
                   >
@@ -214,8 +210,7 @@ const Navbar = () => {
                   <NavLink
                     to="/my-listings"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
-                        isActive ? "text-primary font-semibold" : ""
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""
                       }`
                     }
                   >
@@ -226,8 +221,7 @@ const Navbar = () => {
                   <NavLink
                     to="/my-bookings"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
-                        isActive ? "text-primary font-semibold" : ""
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""
                       }`
                     }
                   >

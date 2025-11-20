@@ -12,13 +12,6 @@ const MainLayout = () => {
         reverseOrder={false}
         toastOptions={{
           duration: 4000,
-          style: {
-            background: "#fff",
-            color: "#1f2937",
-            padding: "16px",
-            borderRadius: "8px",
-            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
-          },
           success: {
             iconTheme: {
               primary: "#10b981",
@@ -34,7 +27,7 @@ const MainLayout = () => {
         }}
       />
       <Navbar />
-      <main className="min-h-screen bg-white relative overflow-hidden">
+      <main className="min-h-screen bg-base-100 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute inset-0 opacity-[0.03]">
             <div

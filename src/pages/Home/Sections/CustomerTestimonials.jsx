@@ -96,7 +96,7 @@ const CustomerTestimonials = () => {
                 y: -10,
                 boxShadow: "0 20px 40px rgba(0,0,0,0.12)",
               }}
-              className="bg-white rounded-2xl p-8 lg:p-10 border-2 border-base-300 relative overflow-hidden"
+              className="bg-base-100 rounded-2xl p-8 lg:p-10 border-2 border-base-300 relative overflow-hidden"
             >
               <div className="absolute top-4 right-4 opacity-5">
                 <FaQuoteLeft className="text-8xl text-primary" />
