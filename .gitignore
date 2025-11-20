@@ -24,3 +24,11 @@ dist-ssr
 *.sw?
 info.txt
 .env
+
+# Firebase
+firebase.json
+.firebaserc
+.firebase/
+firebase.json
+.firebaserc
+.firebase
