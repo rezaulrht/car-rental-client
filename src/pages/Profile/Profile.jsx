@@ -29,7 +29,7 @@ const Profile = () => {
     totalBookings: 0,
     totalListings: 0,
     totalSpent: 0,
-    totalEarnings: 0, // Potential future feature
+    totalEarnings: 0,
     listingsValue: 0,
   });
   const [isEditing, setIsEditing] = useState(false);
@@ -69,11 +69,16 @@ const Profile = () => {
       const totalBookings = myBookings.length;
       const totalSpent = myBookings.reduce((sum, booking) => sum + Number(booking.totalPrice), 0);
 
+      // Fetch User's Earnings
+      const earningsResponse = await axios.get(`/users/${user.uid}/earnings`);
+      const totalEarnings = earningsResponse.data.totalEarnings || 0;
+
       setStats({
         totalBookings,
         totalListings,
         totalSpent,
         listingsValue,
+        totalEarnings,
       });
     } catch (error) {
       console.error("Error fetching stats:", error);
@@ -260,8 +265,8 @@ const Profile = () => {
                   </div>
                   <span className="text-xs font-bold text-secondary">Lifetime</span>
                 </div>
-                <p className="text-neutral-medium text-sm font-body">Total Spent</p>
-                <h4 className="text-3xl font-heading font-bold text-neutral">৳{stats.totalSpent.toLocaleString()}</h4>
+                <p className="text-neutral-medium text-sm font-body">Total Earnings</p>
+                <h4 className="text-3xl font-heading font-bold text-neutral">৳{stats.totalEarnings.toLocaleString()}</h4>
               </div>
 
               {/* My Listings */}
