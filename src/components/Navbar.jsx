@@ -197,6 +197,17 @@ const Navbar = () => {
                 <div className="divider my-0"></div>
                 <li>
                   <NavLink
+                    to="/profile"
+                    className={({ isActive }) =>
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""
+                      }`
+                    }
+                  >
+                    Profile
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
                     to="/add-car"
                     className={({ isActive }) =>
                       `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""

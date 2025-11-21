@@ -12,6 +12,7 @@ import BrowseCars from "../pages/BrowseCars/BrowseCars";
 import LearnMore from "../pages/LearnMore/LearnMore";
 import CarDetails from "../pages/CarDetails/CarDetails";
 import Loader from "../components/Loader";
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -66,6 +67,14 @@ const router = createBrowserRouter([
       {
         path: "/learn-more",
         Component: LearnMore,
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
