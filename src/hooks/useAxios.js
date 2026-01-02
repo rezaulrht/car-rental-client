@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "https://rental-car-server-nine.vercel.app/",
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 const useAxios = () => {

@@ -39,7 +39,8 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
+            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+              isActive ? "text-primary font-semibold" : ""
             }`
           }
         >
@@ -50,7 +51,8 @@ const Navbar = () => {
         <NavLink
           to="/browse"
           className={({ isActive }) =>
-            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
+            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+              isActive ? "text-primary font-semibold" : ""
             }`
           }
         >
@@ -62,9 +64,22 @@ const Navbar = () => {
         <>
           <li>
             <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+                  isActive ? "text-primary font-semibold" : ""
+                }`
+              }
+            >
+              Dashboard
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/add-car"
               className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
+                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+                  isActive ? "text-primary font-semibold" : ""
                 }`
               }
             >
@@ -75,7 +90,8 @@ const Navbar = () => {
             <NavLink
               to="/my-listings"
               className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
+                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+                  isActive ? "text-primary font-semibold" : ""
                 }`
               }
             >
@@ -86,7 +102,8 @@ const Navbar = () => {
             <NavLink
               to="/my-bookings"
               className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${isActive ? "text-primary font-semibold" : ""
+                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+                  isActive ? "text-primary font-semibold" : ""
                 }`
               }
             >
@@ -197,9 +214,22 @@ const Navbar = () => {
                 <div className="divider my-0"></div>
                 <li>
                   <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
+                        isActive ? "text-primary font-semibold" : ""
+                      }`
+                    }
+                  >
+                    Dashboard
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
                     to="/profile"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
+                        isActive ? "text-primary font-semibold" : ""
                       }`
                     }
                   >
@@ -210,7 +240,8 @@ const Navbar = () => {
                   <NavLink
                     to="/add-car"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
+                        isActive ? "text-primary font-semibold" : ""
                       }`
                     }
                   >
@@ -221,7 +252,8 @@ const Navbar = () => {
                   <NavLink
                     to="/my-listings"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
+                        isActive ? "text-primary font-semibold" : ""
                       }`
                     }
                   >
@@ -232,7 +264,8 @@ const Navbar = () => {
                   <NavLink
                     to="/my-bookings"
                     className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${isActive ? "text-primary font-semibold" : ""
+                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
+                        isActive ? "text-primary font-semibold" : ""
                       }`
                     }
                   >
