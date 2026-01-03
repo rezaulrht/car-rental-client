@@ -221,9 +221,9 @@ const DashboardLayout = () => {
       {/* Main Content Area */}
       <div className="flex">
         {/* Sidebar - Desktop */}
-        <aside className="hidden lg:block w-64 xl:w-72 bg-base-100 border-r border-base-300 min-h-[calc(100vh-5rem)] sticky top-20">
-          <nav className="p-4">
-            <ul className="menu gap-2">
+        <aside className="hidden lg:block w-64 xl:w-72 bg-base-100 border-r border-base-300 h-[calc(100vh-5rem)] sticky top-20">
+          <nav className="p-4 h-full flex flex-col">
+            <ul className="menu gap-2 flex-1">
               {menuItems.map((item) => (
                 <li key={item.path}>
                   <NavLink
@@ -244,23 +244,15 @@ const DashboardLayout = () => {
               ))}
             </ul>
 
-            {/* Quick Stats Card */}
-            <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
-              <div className="flex items-center gap-2 mb-2">
-                <FaCar className="text-primary h-5 w-5" />
-                <h3 className="font-heading font-semibold text-neutral">
-                  Quick Stats
-                </h3>
-              </div>
-              <p className="text-xs text-neutral-medium font-body">
-                View your complete dashboard for detailed insights
-              </p>
-              <Link
-                to="/dashboard"
-                className="btn btn-primary btn-sm w-full mt-3 text-white"
+            {/* Logout Button */}
+            <div className="mt-4 pt-4 border-t border-base-300">
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg font-body font-medium transition-all duration-200 text-error hover:bg-error/10 w-full"
               >
-                View Dashboard
-              </Link>
+                <HiLogout className="h-5 w-5" />
+                Logout
+              </button>
             </div>
           </nav>
         </aside>
@@ -298,8 +290,8 @@ const DashboardLayout = () => {
             </button>
           </div>
 
-          <nav className="p-4">
-            <ul className="menu gap-2">
+          <nav className="p-4 h-[calc(100%-4rem)] flex flex-col">
+            <ul className="menu gap-2 flex-1">
               {menuItems.map((item) => (
                 <li key={item.path}>
                   <NavLink
@@ -320,6 +312,20 @@ const DashboardLayout = () => {
                 </li>
               ))}
             </ul>
+
+            {/* Logout Button */}
+            <div className="mt-4 pt-4 border-t border-base-300">
+              <button
+                onClick={() => {
+                  setSidebarOpen(false);
+                  handleLogout();
+                }}
+                className="flex items-center gap-3 px-4 py-3 rounded-lg font-body font-medium transition-all duration-200 text-error hover:bg-error/10 w-full"
+              >
+                <HiLogout className="h-5 w-5" />
+                Logout
+              </button>
+            </div>
           </nav>
         </aside>
 

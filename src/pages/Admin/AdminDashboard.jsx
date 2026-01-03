@@ -95,12 +95,12 @@ const AdminDashboard = () => {
   ];
 
   const COLORS = [
-    "hsl(var(--p))",
-    "hsl(var(--s))",
-    "hsl(var(--a))",
-    "hsl(var(--er))",
-    "hsl(var(--in))",
-    "hsl(var(--wa))",
+    "#2563eb", // Primary Blue
+    "#f59e0b", // Secondary Amber
+    "#10b981", // Accent Green
+    "#ef4444", // Error Red
+    "#3b82f6", // Info Blue
+    "#f97316", // Orange
   ];
 
   return (

@@ -25,9 +25,8 @@ const BrowseCars = () => {
   const [currentPage, setCurrentPage] = useState(
     parseInt(searchParams.get("page")) || 1
   );
-  const [initialLoad, setInitialLoad] = useState(true);
   const searchInputRef = useRef(null);
-  const itemsPerPage = 12;
+  const itemsPerPage = 6;
 
   const categories = [
     "All Categories",
@@ -38,6 +37,9 @@ const BrowseCars = () => {
     "Sports",
     "Electric",
     "Convertible",
+    "Coupe",
+    "Van",
+    "Truck",
   ];
 
   const fetchCars = async () => {
@@ -163,7 +165,6 @@ const BrowseCars = () => {
   useEffect(() => {
     document.title = "Browse Cars - RentWheels";
     fetchCars();
-    setInitialLoad(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -356,7 +357,7 @@ const BrowseCars = () => {
 
             {currentCars.length > 0 ? (
               <>
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 mb-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
                   {currentCars.map((car) => (
                     <CarsCard key={car._id} car={car} />
                   ))}

@@ -20,10 +20,14 @@ const FeaturedCars = () => {
     try {
       setLoading(true);
       const response = await axios.get("/cars");
-      // Get 6 random cars
+      // Get last 6 added cars (sorted by dateAdded descending)
       const allCars = response.data;
-      const shuffled = [...allCars].sort(() => 0.5 - Math.random());
-      const featuredCars = shuffled.slice(0, 6);
+      const sortedCars = [...allCars].sort((a, b) => {
+        const dateA = new Date(a.dateAdded || a.registrationDate || 0);
+        const dateB = new Date(b.dateAdded || b.registrationDate || 0);
+        return dateB - dateA; // Newest first
+      });
+      const featuredCars = sortedCars.slice(0, 6);
       setCars(featuredCars);
     } catch (error) {
       console.error("Error fetching featured cars:", error);
@@ -66,7 +70,7 @@ const FeaturedCars = () => {
           className="text-center mb-12 lg:mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-neutral mb-4">
-            Featured <span className="text-primary">Cars</span>
+            Recently Added <span className="text-primary">Cars</span>
           </h2>
           <motion.div
             initial={{ width: 0 }}
@@ -76,7 +80,7 @@ const FeaturedCars = () => {
             className="h-1 bg-primary mx-auto rounded-full"
           ></motion.div>
           <p className="text-lg lg:text-xl text-neutral-medium font-body mt-4 max-w-2xl mx-auto">
-            Discover our handpicked selection of premium vehicles
+            Discover our latest vehicles just added to the platform
           </p>
         </motion.div>
 

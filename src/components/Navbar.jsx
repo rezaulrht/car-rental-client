@@ -2,12 +2,14 @@ import React, { use } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { HiMenu } from "react-icons/hi";
 import AuthContext from "../contexts/AuthContext";
+import useRole from "../hooks/useRole";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
   const { signOutUser, user, loading } = use(AuthContext);
+  const { isAdmin } = useRole();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -61,56 +63,18 @@ const Navbar = () => {
       </li>
 
       {user && (
-        <>
-          <li>
-            <NavLink
-              to="/dashboard"
-              className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-                  isActive ? "text-primary font-semibold" : ""
-                }`
-              }
-            >
-              Dashboard
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/add-car"
-              className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-                  isActive ? "text-primary font-semibold" : ""
-                }`
-              }
-            >
-              Add Car
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/my-listings"
-              className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-                  isActive ? "text-primary font-semibold" : ""
-                }`
-              }
-            >
-              My Listings
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/my-bookings"
-              className={({ isActive }) =>
-                `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-                  isActive ? "text-primary font-semibold" : ""
-                }`
-              }
-            >
-              My Bookings
-            </NavLink>
-          </li>
-        </>
+        <li>
+          <NavLink
+            to={isAdmin ? "/dashboard/admin" : "/dashboard"}
+            className={({ isActive }) =>
+              `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+                isActive ? "text-primary font-semibold" : ""
+              }`
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
       )}
     </>
   );
@@ -214,7 +178,7 @@ const Navbar = () => {
                 <div className="divider my-0"></div>
                 <li>
                   <NavLink
-                    to="/dashboard"
+                    to={isAdmin ? "/dashboard/admin" : "/dashboard"}
                     className={({ isActive }) =>
                       `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
                         isActive ? "text-primary font-semibold" : ""
@@ -234,42 +198,6 @@ const Navbar = () => {
                     }
                   >
                     Profile
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/add-car"
-                    className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
-                        isActive ? "text-primary font-semibold" : ""
-                      }`
-                    }
-                  >
-                    Add Car
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/my-listings"
-                    className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
-                        isActive ? "text-primary font-semibold" : ""
-                      }`
-                    }
-                  >
-                    My Listings
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/my-bookings"
-                    className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
-                        isActive ? "text-primary font-semibold" : ""
-                      }`
-                    }
-                  >
-                    My Bookings
                   </NavLink>
                 </li>
                 <div className="divider my-0"></div>
