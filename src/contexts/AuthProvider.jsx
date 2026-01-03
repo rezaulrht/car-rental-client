@@ -15,6 +15,7 @@ import useAxios from "../hooks/useAxios";
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userRole, setUserRole] = useState(null);
   const axios = useAxios(); // Keep useAxios here for public endpoints like user registration
 
   const googleProvider = new GoogleAuthProvider();
@@ -72,14 +73,28 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
+
+      // Fetch user role from backend
+      if (currentUser) {
+        try {
+          const response = await axios.get(`/users/${currentUser.uid}`);
+          setUserRole(response.data.role || "user");
+        } catch (error) {
+          console.error("Error fetching user role:", error);
+          setUserRole("user"); // Default to user if error
+        }
+      } else {
+        setUserRole(null);
+      }
+
       setLoading(false);
     });
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [axios]);
 
   const authInfo = {
     createUser,
@@ -89,6 +104,8 @@ const AuthProvider = ({ children }) => {
     updateUserProfile,
     user,
     loading,
+    userRole,
+    setUser,
   };
   return (
     <div>

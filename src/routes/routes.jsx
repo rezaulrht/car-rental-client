@@ -5,8 +5,10 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import Error404 from "../components/error404";
+import Forbidden from "../components/Forbidden";
 import AddCar from "../pages/AddCar/AddCar";
 import PrivateRoute from "./PrivateRoutes";
+import AdminRoute from "./AdminRoute";
 import MyListings from "../pages/MyListings/MyListings";
 import MyBookings from "../pages/MyBookings/MyBookings";
 import BrowseCars from "../pages/BrowseCars/BrowseCars";
@@ -15,6 +17,10 @@ import CarDetails from "../pages/CarDetails/CarDetails";
 import Loader from "../components/Loader";
 import Profile from "../pages/Profile/Profile";
 import DashboardHome from "../pages/Dashboard/DashboardHome";
+import AdminDashboard from "../pages/Admin/AdminDashboard";
+import UserManagement from "../pages/Admin/UserManagement";
+import AllCars from "../pages/Admin/AllCars";
+import AllBookings from "../pages/Admin/AllBookings";
 
 const router = createBrowserRouter([
   {
@@ -80,7 +86,43 @@ const router = createBrowserRouter([
         path: "profile",
         Component: Profile,
       },
+      {
+        path: "admin",
+        element: (
+          <AdminRoute>
+            <AdminDashboard />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/users",
+        element: (
+          <AdminRoute>
+            <UserManagement />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/cars",
+        element: (
+          <AdminRoute>
+            <AllCars />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/bookings",
+        element: (
+          <AdminRoute>
+            <AllBookings />
+          </AdminRoute>
+        ),
+      },
     ],
+  },
+  {
+    path: "/forbidden",
+    Component: Forbidden,
   },
   {
     path: "*",

@@ -10,15 +10,19 @@ import {
   HiUser,
   HiLogout,
   HiChevronDown,
+  HiUserGroup,
+  HiChartBar,
 } from "react-icons/hi";
-import { FaCar } from "react-icons/fa";
+import { FaCar, FaShieldAlt } from "react-icons/fa";
 import AuthContext from "../contexts/AuthContext";
+import useRole from "../hooks/useRole";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import ThemeToggle from "../components/ThemeToggle";
 
 const DashboardLayout = () => {
   const { signOutUser, user } = use(AuthContext);
+  const { isAdmin } = useRole();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -45,7 +49,8 @@ const DashboardLayout = () => {
     });
   };
 
-  const menuItems = [
+  // User menu items
+  const userMenuItems = [
     {
       name: "Dashboard Home",
       path: "/dashboard",
@@ -73,6 +78,39 @@ const DashboardLayout = () => {
       icon: HiUser,
     },
   ];
+
+  // Admin menu items
+  const adminMenuItems = [
+    {
+      name: "Admin Dashboard",
+      path: "/dashboard/admin",
+      icon: HiChartBar,
+      end: true,
+    },
+    {
+      name: "Manage Users",
+      path: "/dashboard/admin/users",
+      icon: HiUserGroup,
+    },
+    {
+      name: "All Cars",
+      path: "/dashboard/admin/cars",
+      icon: FaCar,
+    },
+    {
+      name: "All Bookings",
+      path: "/dashboard/admin/bookings",
+      icon: HiCollection,
+    },
+    {
+      name: "My Profile",
+      path: "/dashboard/profile",
+      icon: HiUser,
+    },
+  ];
+
+  // Choose menu based on role
+  const menuItems = isAdmin ? adminMenuItems : userMenuItems;
 
   return (
     <div className="min-h-screen bg-base-200">
@@ -104,6 +142,12 @@ const DashboardLayout = () => {
             <span className="text-xl md:text-2xl font-heading font-bold text-neutral">
               Rent<span className="text-primary">Wheels</span>
             </span>
+            {isAdmin && (
+              <span className="hidden md:inline-flex badge badge-error text-white text-xs font-bold ml-2">
+                <FaShieldAlt className="mr-1" />
+                ADMIN
+              </span>
+            )}
           </Link>
 
           {/* Right Side */}

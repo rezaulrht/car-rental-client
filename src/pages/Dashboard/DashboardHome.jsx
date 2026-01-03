@@ -8,6 +8,19 @@ import {
   HiPlusCircle,
 } from "react-icons/hi";
 import { FaCar, FaCalendarAlt, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  BarChart,
+  Bar,
+  PieChart,
+  Pie,
+  Cell,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import AuthContext from "../../contexts/AuthContext";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/Loader";
@@ -25,6 +38,10 @@ const DashboardHome = () => {
   });
   const [recentBookings, setRecentBookings] = useState([]);
   const [recentListings, setRecentListings] = useState([]);
+  const [chartData, setChartData] = useState({
+    bookingsOverTime: [],
+    carsByCategory: [],
+  });
 
   useEffect(() => {
     document.title = "Dashboard - RentWheels";
@@ -92,12 +109,80 @@ const DashboardHome = () => {
 
       setRecentBookings(bookingsWithCarDetails);
       setRecentListings(myCars.slice(0, 5));
+
+      // Prepare Chart Data
+      prepareChartData(myBookings, myCars);
     } catch (error) {
       console.error("Error fetching dashboard data:", error);
       toast.error("Failed to load dashboard data");
     } finally {
       setLoading(false);
     }
+  };
+
+  const prepareChartData = (bookings, cars) => {
+    // Bookings Over Time (Last 6 months)
+    const monthNames = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    const currentDate = new Date();
+    const bookingsOverTime = [];
+
+    for (let i = 5; i >= 0; i--) {
+      const date = new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() - i,
+        1
+      );
+      const monthYear = `${monthNames[date.getMonth()]} ${date.getFullYear()}`;
+
+      const monthBookings = bookings.filter((booking) => {
+        const bookingDate = new Date(booking.bookingDate);
+        return (
+          bookingDate.getMonth() === date.getMonth() &&
+          bookingDate.getFullYear() === date.getFullYear()
+        );
+      });
+
+      const monthRevenue = monthBookings.reduce(
+        (sum, booking) => sum + Number(booking.totalPrice || 0),
+        0
+      );
+
+      bookingsOverTime.push({
+        month: monthYear,
+        bookings: monthBookings.length,
+        revenue: monthRevenue,
+      });
+    }
+
+    // Cars by Category
+    const categoryMap = {};
+    cars.forEach((car) => {
+      const category = car.category || "Other";
+      categoryMap[category] = (categoryMap[category] || 0) + 1;
+    });
+
+    const carsByCategory = Object.keys(categoryMap).map((category) => ({
+      name: category,
+      value: categoryMap[category],
+    }));
+
+    setChartData({
+      bookingsOverTime,
+      carsByCategory,
+    });
   };
 
   if (loading) {
@@ -205,6 +290,98 @@ const DashboardHome = () => {
           </Link>
         </div>
       </div>
+
+      {/* Charts Section */}
+      {(chartData.bookingsOverTime.length > 0 ||
+        chartData.carsByCategory.length > 0) && (
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8">
+          {/* Bookings Over Time Chart */}
+          {chartData.bookingsOverTime.length > 0 && (
+            <div className="bg-base-100 rounded-2xl p-6 md:p-8 shadow-lg border-2 border-base-300">
+              <h2 className="text-2xl font-heading font-bold text-neutral mb-6">
+                Bookings Over Time
+              </h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <BarChart data={chartData.bookingsOverTime}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis
+                    dataKey="month"
+                    tick={{ fontSize: 12 }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={80}
+                  />
+                  <YAxis tick={{ fontSize: 12 }} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "var(--color-base-100)",
+                      border: "1px solid var(--color-base-300)",
+                      borderRadius: "0.5rem",
+                    }}
+                  />
+                  <Legend />
+                  <Bar
+                    dataKey="bookings"
+                    fill="hsl(var(--p))"
+                    name="Bookings"
+                    radius={[8, 8, 0, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+
+          {/* Cars by Category Chart */}
+          {chartData.carsByCategory.length > 0 && (
+            <div className="bg-base-100 rounded-2xl p-6 md:p-8 shadow-lg border-2 border-base-300">
+              <h2 className="text-2xl font-heading font-bold text-neutral mb-6">
+                Cars by Category
+              </h2>
+              <ResponsiveContainer width="100%" height={300}>
+                <PieChart>
+                  <Pie
+                    data={chartData.carsByCategory}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={({ name, percent }) =>
+                      `${name}: ${(percent * 100).toFixed(0)}%`
+                    }
+                    outerRadius={100}
+                    fill="#8884d8"
+                    dataKey="value"
+                  >
+                    {chartData.carsByCategory.map((entry, index) => {
+                      const colors = [
+                        "hsl(var(--p))",
+                        "hsl(var(--s))",
+                        "hsl(var(--a))",
+                        "hsl(var(--er))",
+                        "hsl(var(--in))",
+                        "hsl(var(--wa))",
+                      ];
+                      return (
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={colors[index % colors.length]}
+                        />
+                      );
+                    })}
+                  </Pie>
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "var(--color-base-100)",
+                      border: "1px solid var(--color-base-300)",
+                      borderRadius: "0.5rem",
+                    }}
+                  />
+                  <Legend />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Recent Bookings */}
       {recentBookings.length > 0 && (
