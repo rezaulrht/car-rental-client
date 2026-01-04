@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, use } from "react";
 import { HiUserGroup, HiShieldCheck } from "react-icons/hi";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/Loader";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import AuthContext from "../../contexts/AuthContext";
 
 const UserManagement = () => {
   const axios = useAxiosSecure();
+  const { user: currentUser } = use(AuthContext);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,6 +32,12 @@ const UserManagement = () => {
   };
 
   const handleRoleChange = async (uid, currentRole) => {
+    // Prevent admin from demoting themselves
+    if (currentUser.uid === uid && currentRole === "admin") {
+      toast.error("You cannot demote yourself!");
+      return;
+    }
+
     const newRole = currentRole === "admin" ? "user" : "admin";
     const result = await Swal.fire({
       title: `Change role to ${newRole}?`,
@@ -134,9 +142,21 @@ const UserManagement = () => {
                   <td>
                     <button
                       onClick={() => handleRoleChange(user.uid, user.role)}
+                      disabled={
+                        currentUser.uid === user.uid && user.role === "admin"
+                      }
                       className={`btn btn-sm ${
                         user.role === "admin" ? "btn-error" : "btn-primary"
-                      } text-white`}
+                      } text-white ${
+                        currentUser.uid === user.uid && user.role === "admin"
+                          ? "btn-disabled opacity-50"
+                          : ""
+                      }`}
+                      title={
+                        currentUser.uid === user.uid && user.role === "admin"
+                          ? "You cannot demote yourself"
+                          : ""
+                      }
                     >
                       {user.role === "admin"
                         ? "Demote to User"

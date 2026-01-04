@@ -1,12 +1,13 @@
 import React, { useState, useEffect, use } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { HiMail, HiLockClosed, HiEye, HiEyeOff } from "react-icons/hi";
-import { FaGoogle } from "react-icons/fa";
+import { FaGoogle, FaUser, FaUserShield } from "react-icons/fa";
 import toast from "react-hot-toast";
 import AuthContext from "../../contexts/AuthContext";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const [showDemoOptions, setShowDemoOptions] = useState(false);
   const { loginUser, loginUserwithGoogle } = use(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -14,6 +15,20 @@ const Login = () => {
   useEffect(() => {
     document.title = "Login - RentWheels";
   }, []);
+
+  const handleUserDemo = () => {
+    document.getElementById("email").value = "user@user.com";
+    document.getElementById("password").value = "@User1234";
+    setShowDemoOptions(false);
+    toast.success("User demo credentials filled! Click Login to proceed.");
+  };
+
+  const handleAdminDemo = () => {
+    document.getElementById("email").value = "admin@admin.com";
+    document.getElementById("password").value = "@Admin1234";
+    setShowDemoOptions(false);
+    toast.success("Admin demo credentials filled! Click Login to proceed.");
+  };
 
   const handleSignIn = (e) => {
     e.preventDefault();
@@ -142,6 +157,35 @@ const Login = () => {
               <FaGoogle className="h-5 w-5 text-error" />
               Continue with Google
             </button>
+
+            {!showDemoOptions ? (
+              <button
+                type="button"
+                className="btn btn-outline border-2 border-primary bg-primary/5 hover:bg-primary/10 hover:border-primary w-full h-12 md:h-14 text-primary font-body font-medium transition-all duration-200"
+                onClick={() => setShowDemoOptions(true)}
+              >
+                Try Demo Account
+              </button>
+            ) : (
+              <div className="flex flex-col sm:flex-row gap-3">
+                <button
+                  type="button"
+                  className="btn btn-outline border-2 border-primary bg-base-100 hover:bg-primary/5 hover:border-primary flex-1 h-12 md:h-14 text-primary font-body font-medium transition-all duration-200 flex items-center gap-2 justify-center"
+                  onClick={handleUserDemo}
+                >
+                  <FaUser className="text-sm" />
+                  <span>User Demo</span>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline border-2 border-secondary bg-base-100 hover:bg-secondary/5 hover:border-secondary flex-1 h-12 md:h-14 text-secondary font-body font-medium transition-all duration-200 flex items-center gap-2 justify-center"
+                  onClick={handleAdminDemo}
+                >
+                  <FaUserShield className="text-sm" />
+                  <span>Admin Demo</span>
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="mt-6 text-center">

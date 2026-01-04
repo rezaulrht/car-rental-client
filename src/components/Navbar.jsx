@@ -62,6 +62,21 @@ const Navbar = () => {
         </NavLink>
       </li>
 
+      {!user && (
+        <li>
+          <NavLink
+            to="/about"
+            className={({ isActive }) =>
+              `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+                isActive ? "text-primary font-semibold" : ""
+              }`
+            }
+          >
+            About
+          </NavLink>
+        </li>
+      )}
+
       {user && (
         <li>
           <NavLink
@@ -186,18 +201,6 @@ const Navbar = () => {
                     }
                   >
                     Dashboard
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/profile"
-                    className={({ isActive }) =>
-                      `text-neutral hover:text-primary hover:bg-base-200 font-body text-sm md:text-base py-2 ${
-                        isActive ? "text-primary font-semibold" : ""
-                      }`
-                    }
-                  >
-                    Profile
                   </NavLink>
                 </li>
                 <div className="divider my-0"></div>
