@@ -62,20 +62,31 @@ const Navbar = () => {
         </NavLink>
       </li>
 
-      {!user && (
-        <li>
-          <NavLink
-            to="/about"
-            className={({ isActive }) =>
-              `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
-                isActive ? "text-primary font-semibold" : ""
-              }`
-            }
-          >
-            About
-          </NavLink>
-        </li>
-      )}
+      <li>
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+              isActive ? "text-primary font-semibold" : ""
+            }`
+          }
+        >
+          About
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/contact"
+          className={({ isActive }) =>
+            `text-neutral hover:text-primary hover:bg-base-200 font-body text-base font-medium transition-all duration-200 rounded-lg px-4 py-3 ${
+              isActive ? "text-primary font-semibold" : ""
+            }`
+          }
+        >
+          Contact
+        </NavLink>
+      </li>
 
       {user && (
         <li>

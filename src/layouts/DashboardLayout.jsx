@@ -63,6 +63,11 @@ const DashboardLayout = () => {
       icon: HiCollection,
     },
     {
+      name: "My Reviews",
+      path: "/dashboard/my-reviews",
+      icon: HiChartBar,
+    },
+    {
       name: "My Listings",
       path: "/dashboard/my-listings",
       icon: HiViewGrid,
@@ -101,6 +106,11 @@ const DashboardLayout = () => {
       name: "All Bookings",
       path: "/dashboard/admin/bookings",
       icon: HiCollection,
+    },
+    {
+      name: "All Reviews",
+      path: "/dashboard/admin/reviews",
+      icon: HiChartBar,
     },
     {
       name: "My Profile",

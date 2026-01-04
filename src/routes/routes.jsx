@@ -21,8 +21,10 @@ import AdminDashboard from "../pages/Admin/AdminDashboard";
 import UserManagement from "../pages/Admin/UserManagement";
 import AllCars from "../pages/Admin/AllCars";
 import AllBookings from "../pages/Admin/AllBookings";
+import AllReviews from "../pages/Admin/AllReviews";
 import About from "../pages/About/About";
 import Contact from "../pages/Contact/Contact";
+import MyReviews from "../pages/MyReviews/MyReviews";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +87,10 @@ const router = createBrowserRouter([
         Component: MyBookings,
       },
       {
+        path: "my-reviews",
+        Component: MyReviews,
+      },
+      {
         path: "my-listings",
         Component: MyListings,
       },
@@ -125,6 +131,14 @@ const router = createBrowserRouter([
         element: (
           <AdminRoute>
             <AllBookings />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "admin/reviews",
+        element: (
+          <AdminRoute>
+            <AllReviews />
           </AdminRoute>
         ),
       },

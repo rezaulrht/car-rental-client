@@ -11,10 +11,12 @@ import {
   FaEnvelope,
   FaUser,
   FaClock,
+  FaStar,
 } from "react-icons/fa";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import AuthContext from "../../contexts/AuthContext";
 import Loader from "../../components/Loader";
+import ReviewModal from "../../components/ReviewModal";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
@@ -23,6 +25,9 @@ const MyBookings = () => {
   const { user } = use(AuthContext);
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [bookingReviews, setBookingReviews] = useState({});
 
   useEffect(() => {
     document.title = "My Bookings - Car Rental";
@@ -59,11 +64,58 @@ const MyBookings = () => {
         (a, b) => new Date(b.bookingDate) - new Date(a.bookingDate)
       );
       setBookings(sortedBookings);
+
+      // Fetch reviews for all bookings
+      checkBookingReviews(sortedBookings);
     } catch (error) {
       console.error("Error fetching bookings:", error);
       toast.error("Failed to load your bookings");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const checkBookingReviews = async (bookings) => {
+    try {
+      const reviewChecks = {};
+      for (const booking of bookings) {
+        if (booking.status === "Completed") {
+          try {
+            const response = await axios.get(`/reviews?carId=${booking.carId}`);
+            const userReview = response.data.find(
+              (review) => review.bookingId === booking._id
+            );
+            reviewChecks[booking._id] = userReview || null;
+          } catch (error) {
+            console.error("Error checking review:", error);
+          }
+        }
+      }
+      setBookingReviews(reviewChecks);
+    } catch (error) {
+      console.error("Error checking reviews:", error);
+    }
+  };
+
+  const handleOpenReviewModal = (booking) => {
+    setSelectedBooking(booking);
+    setReviewModalOpen(true);
+  };
+
+  const handleSubmitReview = async ({ rating, comment }) => {
+    try {
+      await axios.post("/reviews", {
+        carId: selectedBooking.carId,
+        rating,
+        comment,
+        bookingId: selectedBooking._id,
+      });
+      toast.success("Review submitted successfully!");
+      fetchMyBookings(); // Refresh to update review status
+    } catch (error) {
+      console.error("Error submitting review:", error);
+      toast.error(error.response?.data?.message || "Failed to submit review");
+      throw error;
     }
   };
 
@@ -384,21 +436,44 @@ const MyBookings = () => {
                               )}
                             </span>
                           </div>
-                          <motion.button
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            onClick={() =>
-                              handleCancelBooking(
-                                booking._id,
-                                booking.carId,
-                                car.carName
-                              )
-                            }
-                            className="btn btn-error btn-sm text-white border-0 h-9 md:h-10 text-xs md:text-sm w-full md:w-auto"
-                          >
-                            <FaTrash className="mr-1 md:mr-2" />
-                            Cancel Booking
-                          </motion.button>
+                          <div className="flex flex-col sm:flex-row gap-2">
+                            {booking.status === "Completed" &&
+                              !bookingReviews[booking._id] && (
+                                <motion.button
+                                  whileHover={{ scale: 1.05 }}
+                                  whileTap={{ scale: 0.95 }}
+                                  onClick={() => handleOpenReviewModal(booking)}
+                                  className="btn btn-primary btn-sm text-white border-0 h-9 md:h-10 text-xs md:text-sm flex-1 sm:flex-none"
+                                >
+                                  <FaStar className="mr-1 md:mr-2" />
+                                  Write Review
+                                </motion.button>
+                              )}
+                            {booking.status === "Completed" &&
+                              bookingReviews[booking._id] && (
+                                <div className="flex items-center gap-2 px-3 py-2 bg-success/10 text-success rounded-lg text-xs md:text-sm font-body">
+                                  <FaStar className="shrink-0" />
+                                  <span>Reviewed</span>
+                                </div>
+                              )}
+                            {booking.status !== "Completed" && (
+                              <motion.button
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={() =>
+                                  handleCancelBooking(
+                                    booking._id,
+                                    booking.carId,
+                                    car.carName
+                                  )
+                                }
+                                className="btn btn-error btn-sm text-white border-0 h-9 md:h-10 text-xs md:text-sm flex-1 sm:flex-none"
+                              >
+                                <FaTrash className="mr-1 md:mr-2" />
+                                Cancel Booking
+                              </motion.button>
+                            )}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -409,6 +484,19 @@ const MyBookings = () => {
           </>
         )}
       </div>
+
+      {/* Review Modal */}
+      {reviewModalOpen && selectedBooking && (
+        <ReviewModal
+          isOpen={reviewModalOpen}
+          onClose={() => {
+            setReviewModalOpen(false);
+            setSelectedBooking(null);
+          }}
+          booking={selectedBooking}
+          onSubmit={handleSubmitReview}
+        />
+      )}
     </div>
   );
 };

@@ -12,11 +12,13 @@ import {
   FaShieldAlt,
   FaClock,
   FaChevronRight,
+  FaStar,
 } from "react-icons/fa";
 import toast from "react-hot-toast";
 import useAxios from "../../hooks/useAxios";
 import Loader from "../../components/Loader";
 import CarBooking from "./CarBooking";
+import ReviewsList from "../../components/ReviewsList";
 
 const CarDetails = () => {
   const { id } = useParams();
@@ -26,9 +28,16 @@ const CarDetails = () => {
   const [car, setCar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  const [averageRating, setAverageRating] = useState(0);
+  const [totalReviews, setTotalReviews] = useState(0);
+  const [relatedCars, setRelatedCars] = useState([]);
 
   useEffect(() => {
     fetchCarDetails();
+    fetchReviews();
+    fetchAverageRating();
+    fetchRelatedCars();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
@@ -49,6 +58,34 @@ const CarDetails = () => {
       navigate("/browse");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchReviews = async () => {
+    try {
+      const response = await axios.get(`/reviews?carId=${id}`);
+      setReviews(response.data);
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    }
+  };
+
+  const fetchAverageRating = async () => {
+    try {
+      const response = await axios.get(`/cars/${id}/rating`);
+      setAverageRating(response.data.averageRating);
+      setTotalReviews(response.data.totalReviews);
+    } catch (error) {
+      console.error("Error fetching rating:", error);
+    }
+  };
+
+  const fetchRelatedCars = async () => {
+    try {
+      const response = await axios.get(`/cars/${id}/related`);
+      setRelatedCars(response.data);
+    } catch (error) {
+      console.error("Error fetching related cars:", error);
     }
   };
 
@@ -299,6 +336,85 @@ const CarDetails = () => {
             </div>
           </motion.div>
         </div>
+
+        {/* Related Cars Section */}
+        {relatedCars.length > 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="mt-8 md:mt-10 lg:mt-12"
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <FaCar className="text-2xl text-primary" />
+              <h2 className="text-2xl md:text-3xl font-heading font-bold text-neutral">
+                Similar Cars You May Like
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+              {relatedCars.map((relatedCar, index) => (
+                <motion.div
+                  key={relatedCar._id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  onClick={() => navigate(`/car-details/${relatedCar._id}`)}
+                  className="bg-base-100 rounded-xl border-2 border-base-300 shadow-lg overflow-hidden cursor-pointer hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                >
+                  <div className="relative h-40 overflow-hidden bg-base-200">
+                    <img
+                      src={relatedCar.imageURL}
+                      alt={relatedCar.carName}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 right-2">
+                      <span className="badge badge-sm bg-accent text-white border-0">
+                        {relatedCar.status}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-4 space-y-2">
+                    <h3 className="text-lg font-heading font-bold text-neutral truncate">
+                      {relatedCar.carName}
+                    </h3>
+                    <div className="flex items-center gap-2 text-sm text-neutral-medium">
+                      <FaMapMarkerAlt className="text-xs" />
+                      <span className="truncate">{relatedCar.location}</span>
+                    </div>
+                    <div className="flex items-center justify-between pt-2 border-t border-base-300">
+                      <span className="text-xs text-neutral-medium">
+                        per day
+                      </span>
+                      <span className="text-xl font-heading font-bold text-primary">
+                        ৳{Number(relatedCar.rentPrice).toLocaleString()}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+
+        {/* Reviews Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 md:mt-10 lg:mt-12"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <FaStar className="text-2xl text-warning" />
+            <h2 className="text-2xl md:text-3xl font-heading font-bold text-neutral">
+              Customer Reviews
+            </h2>
+          </div>
+          <ReviewsList
+            reviews={reviews}
+            averageRating={averageRating}
+            totalReviews={totalReviews}
+          />
+        </motion.div>
       </div>
 
       <CarBooking
